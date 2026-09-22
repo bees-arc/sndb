@@ -1,18 +1,16 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { TrendingUp, TrendingDown, RefreshCw, Activity } from 'lucide-react';
+import { TrendingUp, TrendingDown, RefreshCw } from 'lucide-react';
 import { SAMPLE_CSE_STOCKS, StockTicker } from '@/data/ndbsData';
 
 export default function MarketTicker() {
   const [stocks, setStocks] = useState<StockTicker[]>(SAMPLE_CSE_STOCKS);
   const [aspi, setAspi] = useState({ value: 11842.30, change: 48.10, pct: 0.41 });
   const [sp20, setSp20] = useState({ value: 3485.60, change: 19.20, pct: 0.55 });
-  const [turnover, setTurnover] = useState(2450.8); // Million LKR
-  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+  const [turnover, setTurnover] = useState(2450.8);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // Live simulation to replicate AtradDataFeed
   const simulateFeedTick = () => {
     setIsRefreshing(true);
     setTimeout(() => {
@@ -36,7 +34,6 @@ export default function MarketTicker() {
         pct: Number(((prev.change / prev.value) * 100).toFixed(2))
       }));
 
-      setLastUpdated(new Date());
       setIsRefreshing(false);
     }, 400);
   };
@@ -44,13 +41,13 @@ export default function MarketTicker() {
   useEffect(() => {
     const interval = setInterval(() => {
       simulateFeedTick();
-    }, 8000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div style={{
-      background: 'var(--bg-card-solid)',
+      background: '#FFFFFF',
       borderBottom: '1px solid var(--border-hairline)',
       position: 'relative',
       overflow: 'hidden'
@@ -59,23 +56,22 @@ export default function MarketTicker() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: '0.6rem',
-        paddingBottom: '0.6rem',
-        gap: '1rem',
+        padding: '0.65rem 2rem',
+        gap: '2rem',
         flexWrap: 'wrap'
       }}>
-        {/* Left CSE Index Badges */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexShrink: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        {/* Left: CSE Benchmark Indices with Clear Spacing */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.75rem', flexShrink: 0, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
             <span className="pulse-dot" title="Live Market Feed Active" />
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.04em', color: 'var(--text-secondary)' }}>
+            <span style={{ fontSize: '0.785rem', fontWeight: 700, letterSpacing: '0.04em', color: 'var(--text-secondary)' }}>
               CSE LIVE
             </span>
           </div>
 
           {/* ASPI */}
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem' }}>
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)' }}>ASPI</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--text-secondary)' }}>ASPI</span>
             <span style={{ fontSize: '0.95rem', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
               {aspi.value.toLocaleString(undefined, { minimumFractionDigits: 2 })}
             </span>
@@ -85,8 +81,8 @@ export default function MarketTicker() {
           </div>
 
           {/* S&P SL20 */}
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem' }}>
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)' }}>S&P SL20</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--text-secondary)' }}>S&P SL20</span>
             <span style={{ fontSize: '0.95rem', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
               {sp20.value.toLocaleString(undefined, { minimumFractionDigits: 2 })}
             </span>
@@ -96,33 +92,33 @@ export default function MarketTicker() {
           </div>
 
           {/* Turnover */}
-          <div style={{ display: 'none' }} className="turnover-box">
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>Turnover:</span>
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)' }}>Rs. {(turnover / 1000).toFixed(2)} Bn</span>
+          <div className="turnover-pill" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.825rem' }}>
+            <span style={{ color: 'var(--text-tertiary)' }}>Turnover:</span>
+            <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>Rs. {(turnover / 1000).toFixed(2)} Bn</span>
           </div>
         </div>
 
-        {/* Right: Scrolling/Ticker Preview Stocks + Manual Refresh */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flex: 1, justifyContent: 'flex-end', minWidth: '320px' }}>
+        {/* Right: Selected Active Equities + Refresh */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flex: 1, justifyContent: 'flex-end', minWidth: '280px' }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '1.25rem',
+            gap: '1.5rem',
             overflowX: 'auto',
             paddingRight: '0.5rem',
             scrollbarWidth: 'none'
           }}>
-            {stocks.slice(0, 6).map(stock => {
+            {stocks.slice(0, 4).map(stock => {
               const isPositive = stock.change >= 0;
               return (
                 <div key={stock.symbol} style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.4rem',
+                  gap: '0.45rem',
                   fontSize: '0.825rem',
                   flexShrink: 0
                 }}>
-                  <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{stock.symbol.split('.')[0]}</span>
+                  <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{stock.symbol.split('.')[0]}</span>
                   <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>{stock.price.toFixed(2)}</span>
                   <span style={{
                     color: isPositive ? 'var(--gain-green-text)' : 'var(--loss-red-text)',
@@ -146,13 +142,14 @@ export default function MarketTicker() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '0.35rem',
+              padding: '0.4rem',
               borderRadius: 'var(--radius-sm)',
               background: 'var(--bg-tertiary)',
               border: '1px solid var(--border-hairline)',
-              color: 'var(--text-secondary)'
+              color: 'var(--text-secondary)',
+              cursor: 'pointer'
             }}
-            title="Update Live Ticker Feed"
+            title="Refresh Live Ticker Feed"
             aria-label="Refresh ticker"
           >
             <RefreshCw size={13} className={isRefreshing ? 'spin' : ''} />
@@ -161,11 +158,9 @@ export default function MarketTicker() {
       </div>
 
       <style jsx>{`
-        @media (min-width: 1080px) {
-          .turnover-box {
-            display: flex !important;
-            align-items: center;
-            gap: 0.35rem;
+        @media (max-width: 900px) {
+          .turnover-pill {
+            display: none !important;
           }
         }
         .spin {

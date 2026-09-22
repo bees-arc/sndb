@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { ArrowRight, ShieldCheck, Sparkles, TrendingUp, Award, Layers } from 'lucide-react';
 
 interface HeroProps {
@@ -14,15 +15,47 @@ export default function Hero({ audience, onOpenOnboarding }: HeroProps) {
   return (
     <section style={{
       position: 'relative',
-      paddingTop: '4rem',
-      paddingBottom: '4.5rem',
-      background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%)',
+      paddingTop: '5rem',
+      paddingBottom: '5.5rem',
+      overflow: 'hidden',
       borderBottom: '1px solid var(--border-hairline)'
     }}>
-      <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
+      {/* Background Cinematic Capital Markets Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          pointerEvents: 'none'
+        }}
+      >
+        <source src="/hero-bg.mp4" type="video/mp4" />
+        <source src="/NDB_Securities_capital_markets_v%E2%80%A6_20260922171653.mp4" type="video/mp4" />
+      </video>
+
+      {/* Subtle overlay so video is fully visible */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.3) 100%)',
+          zIndex: 1,
+          pointerEvents: 'none'
+        }}
+      />
+
+      {/* Hero Content */}
+      <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 2, padding: '0 2rem' }}>
         {/* Eyebrow Badge (4px radius) */}
         <div style={{ display: 'inline-flex', marginBottom: '1.25rem' }}>
-          <div className="apple-badge accent" style={{ padding: '0.35rem 0.85rem', fontSize: '0.8rem' }}>
+          <div className="apple-badge accent" style={{ padding: '0.35rem 0.85rem', fontSize: '0.8rem', background: '#FFFFFF', boxShadow: 'var(--shadow-sm)' }}>
             <Sparkles size={13} />
             <span>
               {isForeign 
@@ -77,52 +110,52 @@ export default function Hero({ audience, onOpenOnboarding }: HeroProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '0.85rem',
+          gap: '1rem',
           flexWrap: 'wrap',
-          marginBottom: '3.5rem'
+          marginBottom: '3.75rem'
         }}>
           <button
             onClick={onOpenOnboarding}
             className="btn-apple-primary"
-            style={{ fontSize: '0.95rem', padding: '0.8rem 1.8rem' }}
+            style={{ fontSize: '0.95rem', padding: '0.85rem 2rem' }}
           >
             <span>{isForeign ? 'Open International Account' : 'Open CDS Account Online'}</span>
             <ArrowRight size={16} />
           </button>
 
-          <a
-            href="#research"
+          <Link
+            href="/research"
             className="btn-apple-secondary"
-            style={{ fontSize: '0.95rem', padding: '0.8rem 1.6rem' }}
+            style={{ fontSize: '0.95rem', padding: '0.85rem 1.75rem' }}
           >
             <span>Browse Research Library</span>
-          </a>
+          </Link>
         </div>
 
-        {/* 4 Clean Institutional Trust / Metric Badges (8px radius, clean 1px border) */}
+        {/* 4 Clean Institutional Trust Metric Cards (8px radius, clean 1px border) */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '1rem',
+          gap: '1.25rem',
           maxWidth: '1120px',
           margin: '0 auto'
         }}>
-          <div className="bento-card" style={{ padding: '1.35rem', textAlign: 'left' }}>
+          <div className="bento-card" style={{ padding: '1.5rem', textAlign: 'left', background: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
             <div style={{
-              width: '40px',
-              height: '40px',
+              width: '42px',
+              height: '42px',
               borderRadius: 'var(--radius-md)',
               background: 'var(--ndb-crimson-subtle)',
               color: 'var(--ndb-crimson)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: '0.85rem',
+              marginBottom: '1rem',
               border: '1px solid rgba(138, 0, 0, 0.12)'
             }}>
-              <Award size={20} />
+              <Award size={22} />
             </div>
-            <div style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
+            <div style={{ fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
               Over 30 Years
             </div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem', lineHeight: 1.5 }}>
@@ -130,22 +163,22 @@ export default function Hero({ audience, onOpenOnboarding }: HeroProps) {
             </div>
           </div>
 
-          <div className="bento-card" style={{ padding: '1.35rem', textAlign: 'left' }}>
+          <div className="bento-card" style={{ padding: '1.5rem', textAlign: 'left', background: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
             <div style={{
-              width: '40px',
-              height: '40px',
+              width: '42px',
+              height: '42px',
               borderRadius: 'var(--radius-md)',
               background: 'var(--apple-blue-subtle)',
               color: 'var(--apple-blue)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: '0.85rem',
+              marginBottom: '1rem',
               border: '1px solid rgba(2, 132, 199, 0.15)'
             }}>
-              <TrendingUp size={20} />
+              <TrendingUp size={22} />
             </div>
-            <div style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
+            <div style={{ fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
               100% Digital
             </div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem', lineHeight: 1.5 }}>
@@ -153,22 +186,22 @@ export default function Hero({ audience, onOpenOnboarding }: HeroProps) {
             </div>
           </div>
 
-          <div className="bento-card" style={{ padding: '1.35rem', textAlign: 'left' }}>
+          <div className="bento-card" style={{ padding: '1.5rem', textAlign: 'left', background: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
             <div style={{
-              width: '40px',
-              height: '40px',
+              width: '42px',
+              height: '42px',
               borderRadius: 'var(--radius-md)',
               background: 'var(--gain-green-bg)',
               color: 'var(--gain-green)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: '0.85rem',
+              marginBottom: '1rem',
               border: '1px solid #BBF7D0'
             }}>
-              <ShieldCheck size={20} />
+              <ShieldCheck size={22} />
             </div>
-            <div style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
+            <div style={{ fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
               SEC Licensed
             </div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem', lineHeight: 1.5 }}>
@@ -176,22 +209,22 @@ export default function Hero({ audience, onOpenOnboarding }: HeroProps) {
             </div>
           </div>
 
-          <div className="bento-card" style={{ padding: '1.35rem', textAlign: 'left' }}>
+          <div className="bento-card" style={{ padding: '1.5rem', textAlign: 'left', background: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
             <div style={{
-              width: '40px',
-              height: '40px',
+              width: '42px',
+              height: '42px',
               borderRadius: 'var(--radius-md)',
               background: 'rgba(180, 131, 27, 0.08)',
               color: 'var(--ndb-gold)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: '0.85rem',
+              marginBottom: '1rem',
               border: '1px solid rgba(180, 131, 27, 0.2)'
             }}>
-              <Layers size={20} />
+              <Layers size={22} />
             </div>
-            <div style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
+            <div style={{ fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
               NDB Group
             </div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem', lineHeight: 1.5 }}>

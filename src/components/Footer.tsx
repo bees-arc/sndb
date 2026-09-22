@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { ShieldCheck, ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
@@ -8,8 +9,8 @@ export default function Footer() {
     <footer style={{
       background: '#FFFFFF',
       borderTop: '1px solid var(--border-hairline)',
-      paddingTop: '4.5rem',
-      paddingBottom: '3rem',
+      paddingTop: '4rem',
+      paddingBottom: '2.5rem',
       fontSize: '0.875rem',
       color: 'var(--text-secondary)'
     }}>
@@ -19,7 +20,7 @@ export default function Footer() {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
           gap: '2.5rem',
-          marginBottom: '3.5rem'
+          marginBottom: '3rem'
         }}>
           {/* Column 1: Brand & Parentage */}
           <div>
@@ -49,13 +50,21 @@ export default function Footer() {
               Services & Markets
             </div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li><a href="#services" style={{ color: 'var(--text-secondary)' }}>Equity Brokerage & DMA</a></li>
-              <li><a href="#services" style={{ color: 'var(--text-secondary)' }}>Listed Corporate Debt & Debentures</a></li>
-              <li><a href="#services" style={{ color: 'var(--text-secondary)' }}>NDB Wealth Mutual Funds</a></li>
-              <li><a href="#services" style={{ color: 'var(--text-secondary)' }}>Global Custodian Banking Clearance</a></li>
-              <li><a href="https://online.ndbs.lk" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem', color: 'var(--apple-blue)', fontWeight: 600 }}>
-                Atrad Online Trading Portal <ArrowUpRight size={12} />
-              </a></li>
+              <li><Link href="/services#equities" style={{ color: 'var(--text-secondary)' }}>Equity Brokerage & DMA</Link></li>
+              <li><Link href="/services#debt" style={{ color: 'var(--text-secondary)' }}>Listed Corporate Debt</Link></li>
+              <li><Link href="/services" style={{ color: 'var(--text-secondary)' }}>NDB Wealth Mutual Funds</Link></li>
+              <li><Link href="/services#foreign-desk" style={{ color: 'var(--text-secondary)' }}>Global Custodian Banking</Link></li>
+              <li><Link href="/markets" style={{ color: 'var(--text-secondary)' }}>Live CSE Market Intelligence</Link></li>
+              <li>
+                <a
+                  href="https://online.ndbs.lk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem', color: 'var(--apple-blue)', fontWeight: 600 }}
+                >
+                  Atrad Online Trading Portal <ArrowUpRight size={12} />
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -65,11 +74,11 @@ export default function Footer() {
               Research & Compliance
             </div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li><a href="#research" style={{ color: 'var(--text-secondary)' }}>Daily Market Updates</a></li>
-              <li><a href="#research" style={{ color: 'var(--text-secondary)' }}>CSE Sector Valuations Digest</a></li>
-              <li><a href="#documents" style={{ color: 'var(--text-secondary)' }}>CDS 1 & 2 Application Forms</a></li>
-              <li><a href="#documents" style={{ color: 'var(--text-secondary)' }}>AML & Counter-Terrorism Policy</a></li>
-              <li><a href="#documents" style={{ color: 'var(--text-secondary)' }}>Internet Trading Agreement (ITSA)</a></li>
+              <li><Link href="/research" style={{ color: 'var(--text-secondary)' }}>Institutional Research Library</Link></li>
+              <li><Link href="/markets#directory" style={{ color: 'var(--text-secondary)' }}>CSE Sector Valuations Directory</Link></li>
+              <li><Link href="/downloads" style={{ color: 'var(--text-secondary)' }}>CDS 1 & 2 Application Forms</Link></li>
+              <li><Link href="/downloads" style={{ color: 'var(--text-secondary)' }}>AML & Counter-Terrorism Policy</Link></li>
+              <li><Link href="/about#compliance" style={{ color: 'var(--text-secondary)' }}>SEC Regulatory Disclosures</Link></li>
             </ul>
           </div>
 
@@ -83,19 +92,19 @@ export default function Footer() {
               <li><a href="https://www.cse.lk" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>Colombo Stock Exchange (CSE)</a></li>
               <li><a href="https://www.sec.gov.lk" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>SEC Sri Lanka</a></li>
               <li><a href="https://www.cbsl.gov.lk" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>Central Bank of Sri Lanka</a></li>
-              <li><a href="https://www.cds.lk" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>Central Depository Systems (CDS)</a></li>
+              <li><Link href="/contact" style={{ color: 'var(--ndb-crimson)', fontWeight: 600 }}>Branch & Advisor Directory</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Regulatory Statutory Fine Print */}
         <div style={{
-          paddingTop: '2rem',
+          paddingTop: '1.75rem',
           borderTop: '1px solid var(--border-hairline)',
           fontSize: '0.775rem',
           color: 'var(--text-tertiary)',
           lineHeight: 1.6,
-          marginBottom: '2rem'
+          marginBottom: '1.75rem'
         }}>
           <p style={{ marginBottom: '0.5rem' }}>
             <strong>Regulatory Disclaimer:</strong> NDB Securities (Private) Limited is an authorized stockbroker firm licensed by the Securities and Exchange Commission of Sri Lanka (SEC) and a full trading member of the Colombo Stock Exchange. Investments in capital markets, equities, and fixed-income securities are subject to market risks. Investors are advised to read all relevant disclosure documents, risk prospectuses, and research ratings before committing funds.
@@ -122,9 +131,9 @@ export default function Footer() {
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
               <ShieldCheck size={14} style={{ color: 'var(--gain-green)' }} /> ISO & SEC Compliant
             </span>
-            <span>Privacy Policy</span>
-            <span>Terms of Use</span>
-            <span>Security Disclosures</span>
+            <Link href="/downloads">Privacy Policy</Link>
+            <Link href="/downloads">Terms of Use</Link>
+            <Link href="/about#compliance">Security Disclosures</Link>
           </div>
         </div>
       </div>
