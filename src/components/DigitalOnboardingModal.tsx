@@ -81,7 +81,18 @@ export default function DigitalOnboardingModal({ isOpen, onClose, defaultAudienc
         {!isCompleted ? (
           <>
             {/* Header & Step Tracker */}
-            <div style={{ marginBottom: '2rem' }}>
+            <div style={{ marginBottom: '1.75rem' }}>
+              <img
+                src="/ndb-securities-logo.png"
+                alt="NDB Securities"
+                style={{
+                  height: '32px',
+                  width: 'auto',
+                  display: 'block',
+                  objectFit: 'contain',
+                  marginBottom: '1rem'
+                }}
+              />
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
                 <span className="apple-badge accent" style={{ fontSize: '0.75rem' }}>
                   <Shield size={12} /> Paperless e-KYC

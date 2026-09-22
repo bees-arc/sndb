@@ -23,24 +23,17 @@ export default function Footer() {
         }}>
           {/* Column 1: Brand & Parentage */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-              <div style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: 'var(--radius-sm)',
-                background: 'var(--ndb-crimson)',
-                color: '#FFFFFF',
-                fontWeight: 800,
-                fontSize: '0.9rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                NDB
-              </div>
-              <span style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
-                NDB SECURITIES
-              </span>
+            <div style={{ marginBottom: '1.25rem' }}>
+              <img
+                src="/ndb-securities-logo.png"
+                alt="NDB Securities"
+                style={{
+                  height: '36px',
+                  width: 'auto',
+                  display: 'block',
+                  objectFit: 'contain'
+                }}
+              />
             </div>
             <p style={{ fontSize: '0.825rem', lineHeight: 1.6, color: 'var(--text-tertiary)', marginBottom: '1rem' }}>
               A pioneer stockbroking firm licensed by the Securities and Exchange Commission of Sri Lanka (SEC) and a full trading member of the Colombo Stock Exchange (CSE).

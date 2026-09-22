@@ -60,41 +60,32 @@ export default function Header({ audience, onAudienceChange, onOpenOnboarding }:
         justifyContent: 'space-between',
         height: '4.25rem'
       }}>
-        {/* Brand Logo & Descriptor */}
+        {/* Brand Official Logo & Descriptor */}
         <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+          <img
+            src="/ndb-securities-logo.png"
+            alt="NDB Securities"
+            style={{
+              height: '38px',
+              width: 'auto',
+              display: 'block',
+              objectFit: 'contain'
+            }}
+          />
           <div style={{
-            width: '2.5rem',
-            height: '2.5rem',
-            borderRadius: 'var(--radius-sm)',
-            background: 'linear-gradient(135deg, #8A0000 0%, #4A0000 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#FFFFFF',
-            fontWeight: 800,
-            fontSize: '1.1rem',
-            letterSpacing: '-0.03em',
-            boxShadow: '0 4px 12px rgba(138, 0, 0, 0.25)'
-          }}>
-            NDB
-          </div>
-          <div>
+            height: '24px',
+            width: '1px',
+            background: 'var(--border-hairline)',
+            display: 'none'
+          }} className="brand-divider" />
+          <div style={{ display: 'none' }} className="brand-descriptor">
             <div style={{
-              fontWeight: 800,
-              fontSize: '1.15rem',
-              letterSpacing: '-0.02em',
-              color: 'var(--text-primary)',
-              lineHeight: 1.1
-            }}>
-              NDB SECURITIES
-            </div>
-            <div style={{
-              fontSize: '0.75rem',
+              fontSize: '0.725rem',
               color: 'var(--text-tertiary)',
-              fontWeight: 500,
-              letterSpacing: '0.02em'
+              fontWeight: 600,
+              letterSpacing: '0.04em'
             }}>
-              EST. 1992 • WEALTH & CAPITAL MARKETS
+              EST. 1992 • CAPITAL MARKETS
             </div>
           </div>
         </a>
@@ -208,6 +199,14 @@ export default function Header({ audience, onAudienceChange, onOpenOnboarding }:
           }
           .mobile-menu-btn {
             display: none !important;
+          }
+        }
+        @media (min-width: 1240px) {
+          .brand-divider {
+            display: block !important;
+          }
+          .brand-descriptor {
+            display: block !important;
           }
         }
         .nav-link {
