@@ -700,29 +700,6 @@ button {
   background: var(--ndb-red);
 }
 
-/* Voice assist button on bottom left */
-.sound-play-btn {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  z-index: 1050;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--ndb-red);
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(207, 21, 45, 0.4);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.sound-play-btn:hover {
-  transform: scale(1.08);
-  background: var(--ndb-red-hover);
-}
 
 /* =========================================================================
    FOOTER (Exact NDB Bank Black / Dark Style)
@@ -977,9 +954,6 @@ button {
     display: none !important;
   }
 
-  .sound-play-btn {
-    display: none !important;
-  }
 
   .sec2,
   .sec3 {
@@ -997,10 +971,6 @@ button {
     padding-right: 1rem;
   }
 
-  /* Sound Play Voice Assist Button - Removed on mobile as requested by user */
-  .sound-play-btn {
-    display: none !important;
-  }
 
   /* Footer adjustments */
   .ndb-footer {

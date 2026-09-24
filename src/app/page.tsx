@@ -25,7 +25,6 @@ import {
   Globe,
   Landmark,
   PhoneCall,
-  Volume2,
   ChevronRight,
   CheckCircle2,
   Award,
@@ -42,30 +41,8 @@ export default function Home() {
   const { t, language } = useLanguage();
   const [audience, setAudience] = useState<'local' | 'foreign'>('local');
   const [onboardingOpen, setOnboardingOpen] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
   const [mobileFabOpen, setMobileFabOpen] = useState(false);
-
   const topGainers = [...SAMPLE_CSE_STOCKS].sort((a, b) => b.pctChange - a.pctChange).slice(0, 3);
-
-  // Voice Assist Reader for Accessibility (like NDB Bank sound button)
-  const toggleVoiceAssist = () => {
-    if (typeof window === 'undefined') return;
-    if ('speechSynthesis' in window) {
-      if (isSpeaking) {
-        window.speechSynthesis.cancel();
-        setIsSpeaking(false);
-      } else {
-        const text = "Welcome to NDB Securities, member of the Colombo Stock Exchange and subsidiary of National Development Bank PLC. Open your digital CDS account online today or trade via the Atrad portal.";
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.onend = () => setIsSpeaking(false);
-        utterance.onerror = () => setIsSpeaking(false);
-        setIsSpeaking(true);
-        window.speechSynthesis.speak(utterance);
-      }
-    } else {
-      alert("Text-to-speech is not supported in your browser.");
-    }
-  };
 
   return (
     <main style={{ minHeight: '100vh', background: 'var(--bg-primary)' }}>
@@ -1133,15 +1110,6 @@ export default function Home() {
         </button>
       </div>
 
-      {/* 11. Voice Assist / Audio Reading Floating Button (Like NDB Bank sound button) */}
-      <button
-        onClick={toggleVoiceAssist}
-        className="sound-play-btn"
-        title={isSpeaking ? 'Stop Audio' : 'Listen to Page Overview'}
-        aria-label="Voice Assist"
-      >
-        <Volume2 size={20} style={{ animation: isSpeaking ? 'pulseGlow 1.2s infinite' : 'none' }} />
-      </button>
 
       {/* 12. Minimalist Corporate NDB Bank Footer */}
       <Footer />

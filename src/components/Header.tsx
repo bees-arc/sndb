@@ -19,8 +19,6 @@ import {
   Award,
   FileText,
   Search,
-  Sun,
-  Moon,
   ExternalLink,
   ChevronRight,
   ArrowRight,
@@ -45,7 +43,6 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [fontSizeLevel, setFontSizeLevel] = useState<number>(0);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -159,14 +156,6 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
               </button>
             </div>
 
-            {/* Contrast / Theme icon */}
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              title="Toggle Color Mode"
-              style={{ color: '#FFFFFF', display: 'flex', alignItems: 'center' }}
-            >
-              {isDarkMode ? <Sun size={14} /> : <Moon size={14} />}
-            </button>
 
             {/* Direct Telephone */}
             <a
