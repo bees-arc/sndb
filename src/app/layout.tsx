@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   title: "NDB Securities | Premier Stockbroking & Capital Markets Portal",
   description: "Official portal of NDB Securities (Pvt) Ltd. Licensed by the Securities and Exchange Commission of Sri Lanka (SEC) and full trading member of the Colombo Stock Exchange (CSE). Direct DMA equities, corporate debt, and paperless e-KYC onboarding.",
   keywords: "NDB Securities, NDBS, Colombo Stock Exchange, CSE, Sri Lanka Stock Market, CDS Account, Invest in Sri Lanka, Stockbroker Sri Lanka, Atrad, NDB Bank",
+  icons: {
+    icon: [
+      { url: "/ndb-icon.png", type: "image/png" },
+      { url: "/favicon.ico" }
+    ],
+    apple: "/ndb-icon.png",
+    shortcut: "/ndb-icon.png"
+  }
 };
 
 import Providers from "@/components/Providers";
