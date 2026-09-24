@@ -57,6 +57,22 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Manage body class when mobile menu is open to hide floating buttons
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      if (mobileMenuOpen) {
+        document.body.classList.add('mobile-nav-open');
+      } else {
+        document.body.classList.remove('mobile-nav-open');
+      }
+    }
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.body.classList.remove('mobile-nav-open');
+      }
+    };
+  }, [mobileMenuOpen]);
+
   const closeDropdown = () => setActiveDropdown(null);
 
   const toggleAccordion = (name: string) => {

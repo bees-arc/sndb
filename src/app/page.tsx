@@ -950,7 +950,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 10. Floating Speed Dial Quick Menu - Desktop (Right Edge) */}
+
+      {/* 10. Floating Quick Menu - Desktop (Right Edge - items kept, red square button removed as requested) */}
       <div className="share-buttons desktop-speed-dial">
         <a
           href="https://online.ndbs.lk"
@@ -982,9 +983,6 @@ export default function Home() {
           <PhoneCall size={16} />
           <span>{t('hotline')}</span>
         </a>
-        <div className="share-button-main" title="Quick Access Menu">
-          <LayoutGrid size={20} />
-        </div>
       </div>
 
       {/* 10b. Mobile Chatbot-Style Floating Action Button & Speed Dial (Requested by user) */}

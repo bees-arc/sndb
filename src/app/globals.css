@@ -644,61 +644,6 @@ button {
   align-items: center;
 }
 
-/* =========================================================================
-   FLOATING SPEED DIAL QUICK MENU & VOICE ASSIST (Like NDB Bank)
-   ========================================================================= */
-
-.share-buttons {
-  position: fixed;
-  right: 0;
-  top: 45%;
-  transform: translateY(-50%);
-  z-index: 1040;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 3px;
-}
-
-.share-button-main {
-  width: 44px;
-  height: 44px;
-  background: var(--ndb-red);
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px 0 0 4px;
-  cursor: pointer;
-  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
-  transition: background var(--transition-fast);
-}
-
-.share-button-main:hover {
-  background: var(--ndb-plum);
-}
-
-.share-menu-item {
-  background: #1F2937;
-  color: #FFFFFF;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.6rem 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 4px 0 0 4px;
-  cursor: pointer;
-  transform: translateX(calc(100% - 44px));
-  transition: transform var(--transition-normal), background var(--transition-fast);
-  white-space: nowrap;
-  box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.share-menu-item:hover {
-  transform: translateX(0);
-  background: var(--ndb-red);
-}
 
 
 /* =========================================================================
@@ -835,15 +780,53 @@ button {
 }
 
 /* =========================================================================
-   MOBILE CHATBOT-STYLE SPEED DIAL & FLOATING FAB (Requested by user)
+   DESKTOP FLOATING QUICK MENU (Right Edge - items kept, square button removed)
    ========================================================================= */
 
 .desktop-speed-dial {
+  position: fixed;
+  right: 0;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 1040;
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
 }
+
+.share-menu-item {
+  background: #1F2937;
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.6rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 4px 0 0 4px;
+  cursor: pointer;
+  transform: translateX(calc(100% - 44px));
+  transition: transform var(--transition-normal), background var(--transition-fast);
+  white-space: nowrap;
+  box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.share-menu-item:hover {
+  transform: translateX(0);
+  background: var(--ndb-red);
+}
+
+/* =========================================================================
+   MOBILE CHATBOT-STYLE SPEED DIAL & FLOATING FAB (Requested by user)
+   ========================================================================= */
 
 .mobile-speed-dial-container {
   display: none;
+}
+
+body.mobile-nav-open .mobile-speed-dial-container {
+  display: none !important;
 }
 
 @media (max-width: 991px) {
