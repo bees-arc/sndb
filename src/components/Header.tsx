@@ -24,7 +24,9 @@ import {
   ExternalLink,
   ChevronRight,
   ArrowRight,
-  Download
+  Download,
+  UserCheck,
+  Monitor
 } from 'lucide-react';
 
 import { useLanguage } from '@/context/LanguageContext';
@@ -79,7 +81,7 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
       <div className="ndb-topbar">
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
           {/* Top Left Links (Exact NDB Bank Style) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }} className="topbar-links-desktop">
             <Link href="/about" className="small">{t('aboutUs')}</Link>
             <Link href="/markets" className="small">{t('newsNotices')}</Link>
             <Link href="/research" className="small">{t('researchReports')}</Link>
@@ -258,10 +260,11 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
 
           {/* Right Action Area (Search, CTA Button, Mobile Toggle) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            {/* Search Toggle */}
+            {/* Search Toggle (Desktop only - mobile has search in drawer) */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
               title="Search"
+              className="navbar-desktop-only"
               style={{
                 width: '38px',
                 height: '38px',
@@ -282,17 +285,17 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
               href="https://online.ndbs.lk"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-ndb-outline"
+              className="btn-ndb-outline navbar-desktop-only"
               style={{ fontSize: '0.825rem', padding: '0.5rem 1rem', display: 'none' }}
             >
               <span>{t('atradDmaPortal')}</span>
               <ArrowUpRight size={13} />
             </a>
 
-            {/* Open CDS Account (High-impact NDB Red button) */}
+            {/* Open CDS Account (Desktop only - mobile has CDS button in drawer) */}
             <button
               onClick={onOpenOnboarding}
-              className="btn-ndb-primary"
+              className="btn-ndb-primary navbar-desktop-only"
               style={{ fontSize: '0.85rem', padding: '0.55rem 1.25rem' }}
             >
               <span>{t('digitalCdsAccount')}</span>
@@ -309,7 +312,8 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                 height: '40px',
                 color: '#111827'
               }}
-              className="d-lg-none"
+              className="navbar-mobile-only"
+              aria-label="Open Mobile Menu"
             >
               <Menu size={24} />
             </button>
@@ -854,9 +858,62 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
               <div style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--ndb-red)' }}>
                 NDB SECURITIES
               </div>
-              <button onClick={() => setMobileMenuOpen(false)} style={{ color: '#111827' }}>
+              <button onClick={() => setMobileMenuOpen(false)} style={{ color: '#111827' }} aria-label="Close Mobile Menu">
                 <X size={22} />
               </button>
+            </div>
+
+            {/* Mobile Search Bar inside Drawer (Requested by user) */}
+            <div style={{ padding: '0.85rem 1.25rem', borderBottom: '1px solid var(--border-hairline)', background: '#FFFFFF' }}>
+              <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                <Search size={16} style={{ position: 'absolute', left: '0.85rem', color: 'var(--text-tertiary)' }} />
+                <input
+                  type="text"
+                  placeholder={t('searchPlaceholder') || "Search stocks, research, CDS forms..."}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && searchQuery.trim()) {
+                      window.location.href = `/markets?search=${encodeURIComponent(searchQuery)}`;
+                      setMobileMenuOpen(false);
+                    }
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '0.65rem 0.85rem 0.65rem 2.4rem',
+                    fontSize: '0.85rem',
+                    borderRadius: 'var(--radius-sm)',
+                    border: '1px solid var(--border-subtle)',
+                    outline: 'none',
+                    background: 'var(--bg-secondary)'
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Mobile Action Buttons: Digital CDS Account & Atrad Portal (Requested by user) */}
+            <div style={{ padding: '0.85rem 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.6rem', borderBottom: '1px solid var(--border-hairline)', background: 'var(--bg-secondary)' }}>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenOnboarding();
+                }}
+                className="btn-ndb-primary"
+                style={{ width: '100%', padding: '0.7rem 1rem', fontSize: '0.885rem', justifyContent: 'center' }}
+              >
+                <UserCheck size={17} />
+                <span>{t('digitalCdsAccount')}</span>
+              </button>
+              <a
+                href="https://online.ndbs.lk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ndb-outline"
+                style={{ width: '100%', padding: '0.6rem 1rem', fontSize: '0.825rem', justifyContent: 'center' }}
+              >
+                <Monitor size={15} />
+                <span>{t('atradDmaPortal')}</span>
+              </a>
             </div>
 
             {/* Mobile Language Switcher */}
@@ -1056,6 +1113,43 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                 )}
               </div>
 
+              {/* Accordion 6: Corporate & Information (Topbar Links as requested by user) */}
+              <div style={{ borderBottom: '1px solid var(--border-hairline)', padding: '0.85rem 0' }}>
+                <button
+                  onClick={() => toggleAccordion('corporate')}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', fontWeight: 600, fontSize: '0.95rem', color: '#111827' }}
+                >
+                  <span>{t('whoWeAre') || 'Corporate & Quick Info'}</span>
+                  <ChevronRight size={16} style={{ transform: mobileAccordion === 'corporate' ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }} />
+                </button>
+                {mobileAccordion === 'corporate' && (
+                  <div style={{ paddingLeft: '0.75rem', paddingTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.875rem' }}>
+                    <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • {t('aboutUs')}
+                    </Link>
+                    <Link href="/markets" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • {t('newsNotices')}
+                    </Link>
+                    <Link href="/research" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • {t('researchReports')}
+                    </Link>
+                    <Link href="/about#leadership" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • {t('peopleCulture')}
+                    </Link>
+                    <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • {t('sustainability')}
+                    </Link>
+                    <a href="https://www.ndbbank.com/investor-relations" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                      <span>• {t('investorRelations')}</span>
+                      <ArrowUpRight size={12} />
+                    </a>
+                    <Link href="/contact" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • {t('contactUs')}
+                    </Link>
+                  </div>
+                )}
+              </div>
+
               <div style={{ padding: '0.85rem 0' }}>
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '0.95rem', color: '#111827', display: 'block' }}>
                   {t('contactUs')} &amp; Branch Network
@@ -1064,23 +1158,10 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
             </div>
 
             {/* Drawer Bottom Actions */}
-            <div style={{ padding: '1.5rem', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-hairline)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <button
-                onClick={() => { setMobileMenuOpen(false); onOpenOnboarding(); }}
-                className="btn-ndb-primary"
-                style={{ width: '100%' }}
-              >
-                Open Digital CDS Account
-              </button>
-              <a
-                href="https://online.ndbs.lk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ndb-outline"
-                style={{ width: '100%', textAlign: 'center' }}
-              >
-                Atrad Online Portal
-              </a>
+            <div style={{ padding: '1.25rem 1.5rem', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-hairline)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', textAlign: 'center' }}>
+                Hotline: <a href="tel:+94112131000" style={{ color: 'var(--ndb-red)', fontWeight: 600 }}>+94 11 2 131 000</a>
+              </div>
             </div>
           </div>
         </div>
@@ -1092,13 +1173,40 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
           .d-lg-flex {
             display: flex !important;
           }
-          .d-lg-none {
+          .d-lg-none,
+          .navbar-mobile-only {
             display: none !important;
+          }
+          .navbar-desktop-only {
+            display: inline-flex !important;
+          }
+          .topbar-links-desktop {
+            display: flex !important;
           }
         }
         @media (max-width: 991px) {
           .d-lg-flex {
             display: none !important;
+          }
+          .d-lg-none,
+          .navbar-mobile-only {
+            display: flex !important;
+          }
+          .navbar-desktop-only {
+            display: none !important;
+          }
+          .topbar-links-desktop {
+            display: none !important;
+          }
+          .mega-dropdown-menu,
+          .mega-dropdown-backdrop {
+            display: none !important;
+          }
+          .ndb-topbar {
+            padding: 0.35rem 0;
+          }
+          .ndb-topbar :global(.container) {
+            justify-content: center !important;
           }
         }
       `}</style>
