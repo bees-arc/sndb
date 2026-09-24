@@ -318,408 +318,466 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
 
         {/* Full-width Responsive Mega Dropdown Menu attached to Navbar */}
         {activeDropdown && (
-          <div
-            className="mega-dropdown-menu"
-            onMouseEnter={() => {}}
-            onMouseLeave={() => setActiveDropdown(null)}
-          >
-            <div className="container">
-              {/* 1. Personal Equities */}
-              {activeDropdown === 'personal' && (
-                <div className="mega-dropdown-grid">
-                  <div>
-                    <div className="mega-col-title">
-                      <TrendingUp size={15} />
-                      <span>Account &amp; Trading Access</span>
+          <>
+            <div
+              className="mega-dropdown-backdrop"
+              onClick={() => setActiveDropdown(null)}
+            />
+            <div
+              className="mega-dropdown-menu"
+              onMouseEnter={() => {}}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <div className="container">
+                {/* 1. Personal Equities */}
+                {activeDropdown === 'personal' && (
+                  <div className="mega-dropdown-grid-3">
+                    <div>
+                      <div className="mega-col-title">
+                        <TrendingUp size={15} />
+                        <span>Account &amp; Trading Access</span>
+                      </div>
+                      <div className="mega-menu-list">
+                        <button
+                          onClick={() => { closeDropdown(); onOpenOnboarding(); }}
+                          className="mega-menu-item-link"
+                          style={{ width: '100%', textAlign: 'left' }}
+                        >
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Digital CDS Account Opening</div>
+                            <div className="mega-link-desc">100% paperless e-KYC in under 5 minutes</div>
+                          </div>
+                        </button>
+                        <a
+                          href="https://online.ndbs.lk"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={closeDropdown}
+                          className="mega-menu-item-link"
+                        >
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ExternalLink size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Atrad DMA Trading Portal</div>
+                            <div className="mega-link-desc">Direct market execution engine for web &amp; mobile</div>
+                          </div>
+                        </a>
+                        <Link href="/services#equities" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Secondary Market Equities</div>
+                            <div className="mega-link-desc">Retail share trading across all 285+ CSE stocks</div>
+                          </div>
+                        </Link>
+                        <Link href="/services#custody" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Share Lodgment &amp; Intra Transfers</div>
+                            <div className="mega-link-desc">Paper share conversion to electronic CDS balance</div>
+                          </div>
+                        </Link>
+                      </div>
                     </div>
-                    <div className="mega-menu-list">
+
+                    <div>
+                      <div className="mega-col-title">
+                        <Shield size={15} />
+                        <span>Privilege &amp; Fixed Income</span>
+                      </div>
+                      <div className="mega-menu-list">
+                        <Link href="/services#elevate" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">NDB Elevate Private Wealth</div>
+                            <div className="mega-link-desc">Dedicated portfolio advisors &amp; personalized advisory</div>
+                          </div>
+                        </Link>
+                        <Link href="/services#debt" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Corporate Debentures &amp; Debt</div>
+                            <div className="mega-link-desc">Fixed return debt instruments &amp; treasury yields</div>
+                          </div>
+                        </Link>
+                        <Link href="/services#funds" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Mutual Funds &amp; Unit Trusts</div>
+                            <div className="mega-link-desc">Invest in diverse income &amp; growth funds via NDB Wealth</div>
+                          </div>
+                        </Link>
+                        <Link href="/services#shariah" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">NDB Shareek Compliant Stocks</div>
+                            <div className="mega-link-desc">Shariah-screened equities conforming to Islamic principles</div>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="mega-promo-box">
+                      <div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ndb-red)', marginBottom: '0.5rem' }}>
+                          NDB NEOS &amp; Atrad 2.0
+                        </div>
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
+                          Execute trades, inspect real-time CSE order depths, and review your CDS portfolios on any device seamlessly.
+                        </p>
+                      </div>
                       <button
                         onClick={() => { closeDropdown(); onOpenOnboarding(); }}
-                        className="mega-menu-item-link"
-                        style={{ width: '100%', textAlign: 'left' }}
+                        className="btn-ndb-primary"
+                        style={{ width: '100%', fontSize: '0.825rem', padding: '0.6rem 1rem' }}
                       >
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Digital CDS Account Opening</div>
-                          <div className="mega-link-desc">100% paperless e-KYC in under 5 minutes</div>
-                        </div>
+                        {t('digitalCdsAccount')}
                       </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* 2. Wholesale & Institutional / Foreign */}
+                {activeDropdown === 'wholesale' && (
+                  <div className="mega-dropdown-grid-3">
+                    <div>
+                      <div className="mega-col-title">
+                        <Briefcase size={15} />
+                        <span>Institutional Execution &amp; IIA</span>
+                      </div>
+                      <div className="mega-menu-list">
+                        <Link href="/services#institutional" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Institutional Sales &amp; Block Trades</div>
+                            <div className="mega-link-desc">High-volume discrete executions for funds &amp; corporations</div>
+                          </div>
+                        </Link>
+                        <Link href="/services#foreign-desk" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Foreign Desk &amp; IIA Custody</div>
+                            <div className="mega-link-desc">Inward Investment Accounts &amp; global custodian coordination</div>
+                          </div>
+                        </Link>
+                        <Link href="/services#margin" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Margin &amp; Leverage Facilities</div>
+                            <div className="mega-link-desc">Collateralized trading leverage for institutional accounts</div>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="mega-col-title">
+                        <Globe size={15} />
+                        <span>Invest in Sri Lanka &amp; Group Synergies</span>
+                      </div>
+                      <div className="mega-menu-list">
+                        <Link href="/about" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Heritage &amp; Growth Story</div>
+                            <div className="mega-link-desc">A rich history and macroeconomic growth trajectory</div>
+                          </div>
+                        </Link>
+                        <Link href="/markets" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">The Opportunity in Sri Lanka</div>
+                            <div className="mega-link-desc">Capitalise on undervalued frontier equities &amp; high yields</div>
+                          </div>
+                        </Link>
+                        <a href="https://www.ndbib.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ExternalLink size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">NDB Investment Bank (NDBIB)</div>
+                            <div className="mega-link-desc">Debt structuring, IPO management &amp; corporate advisory</div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="mega-promo-box">
+                      <div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#111827', marginBottom: '0.5rem' }}>
+                          Corporate &amp; Custody Access
+                        </div>
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
+                          Pair institutional equities brokerage with NDB Bank Custody, Trustee &amp; Escrow services.
+                        </p>
+                      </div>
                       <a
-                        href="https://online.ndbs.lk"
+                        href="https://neoscorporate.ndbbank.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={closeDropdown}
-                        className="mega-menu-item-link"
+                        className="btn-ndb-outline"
+                        style={{ width: '100%', fontSize: '0.825rem', padding: '0.6rem 1rem', textAlign: 'center' }}
                       >
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ExternalLink size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Atrad DMA Trading Portal</div>
-                          <div className="mega-link-desc">Direct market execution engine for web &amp; mobile</div>
-                        </div>
+                        Corporate NEOS Login
                       </a>
-                      <Link href="/services#equities" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Secondary Market Equities</div>
-                          <div className="mega-link-desc">Retail share trading across all 285+ CSE stocks</div>
-                        </div>
-                      </Link>
                     </div>
                   </div>
+                )}
 
-                  <div>
-                    <div className="mega-col-title">
-                      <Shield size={15} />
-                      <span>Privilege &amp; Fixed Income</span>
-                    </div>
-                    <div className="mega-menu-list">
-                      <Link href="/services#elevate" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">NDB Elevate Private Wealth</div>
-                          <div className="mega-link-desc">Dedicated portfolio advisors &amp; personalized advisory</div>
-                        </div>
-                      </Link>
-                      <Link href="/services#debt" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Corporate Debentures &amp; Debt</div>
-                          <div className="mega-link-desc">Fixed return debt instruments &amp; treasury yields</div>
-                        </div>
-                      </Link>
-                      <Link href="/services#shariah" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">NDB Shareek Compliant Stocks</div>
-                          <div className="mega-link-desc">Shariah-screened equities conforming to Islamic principles</div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className="mega-promo-box">
+                {/* 3. Research & Markets */}
+                {activeDropdown === 'research' && (
+                  <div className="mega-dropdown-grid-3">
                     <div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ndb-red)', marginBottom: '0.5rem' }}>
-                        NDB NEOS &amp; Atrad 2.0
+                      <div className="mega-col-title">
+                        <BarChart2 size={15} />
+                        <span>Live Market Watch &amp; Listings</span>
                       </div>
-                      <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
-                        Execute trades, inspect real-time CSE order depths, and review your CDS portfolios on any device seamlessly.
-                      </p>
+                      <div className="mega-menu-list">
+                        <Link href="/markets" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><TrendingUp size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Live CSE Market Pulse</div>
+                            <div className="mega-link-desc">ASPI, S&amp;P SL20, turnover &amp; daily gainers/losers</div>
+                          </div>
+                        </Link>
+                        <Link href="/markets#directory" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Layers size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Listed Equities Directory</div>
+                            <div className="mega-link-desc">Comprehensive database across all 20 GICS sectors</div>
+                          </div>
+                        </Link>
+                        <Link href="/markets#listings" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Award size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Upcoming Listings &amp; IPOs</div>
+                            <div className="mega-link-desc">Primary market public offerings and debenture prospectuses</div>
+                          </div>
+                        </Link>
+                      </div>
                     </div>
-                    <button
-                      onClick={() => { closeDropdown(); onOpenOnboarding(); }}
-                      className="btn-ndb-primary"
-                      style={{ width: '100%', fontSize: '0.825rem', padding: '0.6rem 1rem' }}
+
+                    <div>
+                      <div className="mega-col-title">
+                        <FileText size={15} />
+                        <span>Research Library &amp; Philosophy</span>
+                      </div>
+                      <div className="mega-menu-list">
+                        <Link href="/research" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><PieChart size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Institutional Research Library</div>
+                            <div className="mega-link-desc">Daily morning reviews, equity valuations &amp; sector outlooks</div>
+                          </div>
+                        </Link>
+                        <Link href="/research#macro" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Globe size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Macro-Economic Forecasts</div>
+                            <div className="mega-link-desc">CBSL policy rates, inflation trajectories &amp; yield curve updates</div>
+                          </div>
+                        </Link>
+                        <a href="https://www.youtube.com/@NDBSecuritiesLimited" target="_blank" rel="noopener noreferrer" className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ExternalLink size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Market Commentary Videos</div>
+                            <div className="mega-link-desc">Weekly CSE updates &amp; investor education on YouTube</div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="mega-promo-box">
+                      <div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ndb-red)', marginBottom: '0.5rem' }}>
+                          Award-Winning Research
+                        </div>
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
+                          Consistently ranked among Sri Lanka&apos;s best research desks at the CFA Society Capital Market Awards.
+                        </p>
+                      </div>
+                      <Link
+                        href="/research"
+                        onClick={closeDropdown}
+                        className="btn-ndb-outline"
+                        style={{ width: '100%', fontSize: '0.825rem', padding: '0.6rem 1rem', textAlign: 'center' }}
+                      >
+                        Access Research Library
+                      </Link>
+                    </div>
+                  </div>
+                )}
+
+                {/* 4. NDB Group (Who We Are & Leadership) */}
+                {activeDropdown === 'group' && (
+                  <div className="mega-dropdown-grid-4">
+                    <Link
+                      href="/about"
+                      onClick={closeDropdown}
+                      className="mega-promo-box"
+                      style={{ textDecoration: 'none', background: 'var(--bg-secondary)' }}
                     >
-                      {t('digitalCdsAccount')}
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* 2. Wholesale & Institutional */}
-              {activeDropdown === 'wholesale' && (
-                <div className="mega-dropdown-grid">
-                  <div>
-                    <div className="mega-col-title">
-                      <Briefcase size={15} />
-                      <span>Institutional Execution</span>
-                    </div>
-                    <div className="mega-menu-list">
-                      <Link href="/services#institutional" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Institutional Sales &amp; Block Trades</div>
-                          <div className="mega-link-desc">High-volume discrete executions for funds &amp; corporations</div>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ndb-red)', marginBottom: '0.35rem' }}>
+                          The Firm (NDBS)
                         </div>
-                      </Link>
-                      <Link href="/services#foreign-desk" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Foreign Desk &amp; IIA Accounts</div>
-                          <div className="mega-link-desc">Global custody coordination and Inward Investment Accounts</div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+                          Pioneer CSE Member • 1992
                         </div>
-                      </Link>
-                      <Link href="/services#margin" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Margin &amp; Leverage Facilities</div>
-                          <div className="mega-link-desc">Collateralized trading leverage for institutional accounts</div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mega-col-title">
-                      <Building size={15} />
-                      <span>Synergies &amp; Custody</span>
-                    </div>
-                    <div className="mega-menu-list">
-                      <a href="https://www.ndbib.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ExternalLink size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">NDB Investment Bank (NDBIB)</div>
-                          <div className="mega-link-desc">Debt structuring, IPO management &amp; corporate advisory</div>
-                        </div>
-                      </a>
-                      <a href="https://www.ndbbank.com/custody-trustee-and-escrow-services" target="_blank" rel="noopener noreferrer" className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ExternalLink size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Custody, Trustee &amp; Escrow</div>
-                          <div className="mega-link-desc">Institutional escrow &amp; custodian banking with NDB Bank</div>
-                        </div>
-                      </a>
-                      <Link href="/services#debt" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Corporate Debt Syndication</div>
-                          <div className="mega-link-desc">Senior &amp; subordinated listed debenture issuances</div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className="mega-promo-box">
-                    <div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#111827', marginBottom: '0.5rem' }}>
-                        Corporate Internet Banking
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1rem' }}>
+                          Three decades of ethical stockbroking, market research, and high-frequency execution.
+                        </p>
                       </div>
-                      <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
-                        Seamlessly pair institutional equities brokerage with NDB Bank Corporate NEOS banking.
-                      </p>
-                    </div>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--ndb-red)' }}>Learn more &rarr;</span>
+                    </Link>
+
                     <a
-                      href="https://neoscorporate.ndbbank.com/"
+                      href="https://www.ndbch.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-ndb-outline"
-                      style={{ width: '100%', fontSize: '0.825rem', padding: '0.6rem 1rem', textAlign: 'center' }}
+                      className="mega-promo-box"
+                      style={{ textDecoration: 'none', background: 'var(--bg-secondary)' }}
                     >
-                      Corporate NEOS Login
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#111827', marginBottom: '0.35rem' }}>
+                          The Group (NDBCH)
+                        </div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+                          Investment Banking Umbrella
+                        </div>
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1rem' }}>
+                          Parent holding company overseeing securities, wealth management, and private equity.
+                        </p>
+                      </div>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--ndb-red)' }}>Visit NDBCH &rarr;</span>
                     </a>
-                  </div>
-                </div>
-              )}
 
-              {/* 3. Research & Markets */}
-              {activeDropdown === 'research' && (
-                <div className="mega-dropdown-grid">
-                  <div>
-                    <div className="mega-col-title">
-                      <BarChart2 size={15} />
-                      <span>Live Market Watch</span>
-                    </div>
-                    <div className="mega-menu-list">
-                      <Link href="/markets" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><TrendingUp size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Live CSE Market Pulse</div>
-                          <div className="mega-link-desc">ASPI, S&amp;P SL20, turnover &amp; daily gainers/losers</div>
-                        </div>
-                      </Link>
-                      <Link href="/markets#directory" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Layers size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Listed Equities Directory</div>
-                          <div className="mega-link-desc">Comprehensive database across all 20 GICS sectors</div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mega-col-title">
-                      <FileText size={15} />
-                      <span>Macro &amp; Sector Reports</span>
-                    </div>
-                    <div className="mega-menu-list">
-                      <Link href="/research" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><PieChart size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Institutional Research Portal</div>
-                          <div className="mega-link-desc">Daily morning reviews, equity valuations &amp; sector outlooks</div>
-                        </div>
-                      </Link>
-                      <Link href="/research#macro" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Globe size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Macro-Economic Forecasts</div>
-                          <div className="mega-link-desc">CBSL policy rates, inflation trajectories &amp; yield curve updates</div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className="mega-promo-box">
-                    <div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ndb-red)', marginBottom: '0.5rem' }}>
-                        Award-Winning Research
-                      </div>
-                      <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
-                        Consistently ranked among Sri Lanka&apos;s best research desks at the CFA Society Capital Market Awards.
-                      </p>
-                    </div>
-                    <Link
-                      href="/research"
-                      onClick={closeDropdown}
-                      className="btn-ndb-outline"
-                      style={{ width: '100%', fontSize: '0.825rem', padding: '0.6rem 1rem', textAlign: 'center' }}
+                    <a
+                      href="https://www.ndbbank.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mega-promo-box"
+                      style={{ textDecoration: 'none', background: 'var(--bg-secondary)' }}
                     >
-                      Access Research Library
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#111827', marginBottom: '0.35rem' }}>
+                          The Conglomerate
+                        </div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+                          National Development Bank PLC
+                        </div>
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1rem' }}>
+                          Fitch A-(lka) commercial bank with 113+ branches and pioneering digital banking.
+                        </p>
+                      </div>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--ndb-red)' }}>Visit Bank &rarr;</span>
+                    </a>
+
+                    <Link
+                      href="/about#leadership"
+                      onClick={closeDropdown}
+                      className="mega-promo-box"
+                      style={{ textDecoration: 'none', background: 'var(--bg-secondary)' }}
+                    >
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#111827', marginBottom: '0.35rem' }}>
+                          Leadership &amp; Careers
+                        </div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+                          Governance &amp; Opportunities
+                        </div>
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1rem' }}>
+                          Meet our Board of Directors, executive leadership team, and discover career opportunities.
+                        </p>
+                      </div>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--ndb-red)' }}>Meet Leadership &rarr;</span>
                     </Link>
                   </div>
-                </div>
-              )}
+                )}
 
-              {/* 4. NDB Group */}
-              {activeDropdown === 'group' && (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
-                  <a
-                    href="https://www.ndbbank.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="homecard"
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ndb-red)', marginBottom: '0.35rem' }}>
-                      NDB Bank PLC
-                    </div>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                      Commercial Banking • Fitch A-(lka)
-                    </div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      Full service commercial bank with 113+ islandwide branches and digital banking via NDB NEOS.
-                    </div>
-                  </a>
-
-                  <a
-                    href="https://www.ndbch.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="homecard"
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#111827', marginBottom: '0.35rem' }}>
-                      NDB Capital Holdings
-                    </div>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                      Investment Banking Umbrella
-                    </div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      Parent holding company overseeing premier capital market subsidiaries in Sri Lanka.
-                    </div>
-                  </a>
-
-                  <a
-                    href="https://www.ndbwealth.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="homecard"
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#111827', marginBottom: '0.35rem' }}>
-                      NDB Wealth Management
-                    </div>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                      Private Asset Manager
-                    </div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      Sri Lanka&apos;s largest private sector asset manager with mutual funds and discretionary portfolios.
-                    </div>
-                  </a>
-
-                  <a
-                    href="https://www.ndbib.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="homecard"
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#111827', marginBottom: '0.35rem' }}>
-                      NDB Investment Bank
-                    </div>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                      NDBIB • Debt &amp; M&amp;A
-                    </div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      Market leader in landmark IPOs, syndicated debt facilities, and corporate financial advisory.
-                    </div>
-                  </a>
-                </div>
-              )}
-
-              {/* 5. Forms Vault */}
-              {activeDropdown === 'downloads' && (
-                <div className="mega-dropdown-grid">
-                  <div>
-                    <div className="mega-col-title">
-                      <FileText size={15} />
-                      <span>Individual CDS Forms</span>
-                    </div>
-                    <div className="mega-menu-list">
-                      <Link href="/downloads" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Download size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">CDS 1 Individual Application</div>
-                          <div className="mega-link-desc">Primary account opening schedule for resident &amp; non-resident clients</div>
-                        </div>
-                      </Link>
-                      <Link href="/downloads" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Download size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Client Registration &amp; Agreement</div>
-                          <div className="mega-link-desc">Broker-client relationship terms and dividend deposit mandate</div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mega-col-title">
-                      <Building size={15} />
-                      <span>Corporate &amp; Custody Schedules</span>
-                    </div>
-                    <div className="mega-menu-list">
-                      <Link href="/downloads" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Download size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">CDS 2 Corporate Application</div>
-                          <div className="mega-link-desc">Account registration schedule for limited liability corporations</div>
-                        </div>
-                      </Link>
-                      <Link href="/downloads" onClick={closeDropdown} className="mega-menu-item-link">
-                        <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Download size={14} /></div>
-                        <div>
-                          <div className="mega-link-title">Board Resolution Specimen</div>
-                          <div className="mega-link-desc">Corporate authority delegation and authorized signatory schedule</div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className="mega-promo-box">
+                {/* 5. Downloads & Forms Vault */}
+                {activeDropdown === 'downloads' && (
+                  <div className="mega-dropdown-grid-3">
                     <div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ndb-red)', marginBottom: '0.5rem' }}>
-                        Document Repository
+                      <div className="mega-col-title">
+                        <FileText size={15} />
+                        <span>Individual &amp; Corporate CDS Forms</span>
                       </div>
-                      <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
-                        Access official SEC verified schedules, tariff breakdowns, and electronic KYC forms in one central vault.
-                      </p>
+                      <div className="mega-menu-list">
+                        <Link href="/downloads" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Download size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">CDS 1 Individual Application</div>
+                            <div className="mega-link-desc">Primary account opening schedule for resident &amp; non-resident clients</div>
+                          </div>
+                        </Link>
+                        <Link href="/downloads" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Download size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">CDS 2 Corporate Application</div>
+                            <div className="mega-link-desc">Account registration schedule for limited liability corporations</div>
+                          </div>
+                        </Link>
+                        <Link href="/downloads" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Download size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Board Resolution Specimen</div>
+                            <div className="mega-link-desc">Corporate authority delegation and authorized signatory schedule</div>
+                          </div>
+                        </Link>
+                      </div>
                     </div>
-                    <Link
-                      href="/downloads"
-                      onClick={closeDropdown}
-                      className="btn-ndb-primary"
-                      style={{ width: '100%', fontSize: '0.825rem', padding: '0.6rem 1rem', textAlign: 'center' }}
-                    >
-                      Visit Forms Vault
-                    </Link>
+
+                    <div>
+                      <div className="mega-col-title">
+                        <Shield size={15} />
+                        <span>Compliance, AML &amp; Fee Schedules</span>
+                      </div>
+                      <div className="mega-menu-list">
+                        <Link href="/downloads" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Download size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Anti-Money Laundering (AML) Policy</div>
+                            <div className="mega-link-desc">Official AML / CFT compliance framework PDF</div>
+                          </div>
+                        </Link>
+                        <Link href="/downloads" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><Download size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Cautionary Notice by SEC</div>
+                            <div className="mega-link-desc">Statutory investor advisory issued by the SEC Sri Lanka</div>
+                          </div>
+                        </Link>
+                        <Link href="/services#tariffs" onClick={closeDropdown} className="mega-menu-item-link">
+                          <div style={{ color: 'var(--ndb-red)', marginTop: '2px' }}><ArrowRight size={14} /></div>
+                          <div>
+                            <div className="mega-link-title">Brokerage Tariffs &amp; SEC Levies</div>
+                            <div className="mega-link-desc">Standard CSE transaction costs and statutory levy schedule</div>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="mega-promo-box">
+                      <div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ndb-red)', marginBottom: '0.5rem' }}>
+                          Official Document Repository
+                        </div>
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.5 }}>
+                          Access all official SEC verified schedules, tariff breakdowns, and electronic KYC forms in one central vault.
+                        </p>
+                      </div>
+                      <Link
+                        href="/downloads"
+                        onClick={closeDropdown}
+                        className="btn-ndb-primary"
+                        style={{ width: '100%', fontSize: '0.825rem', padding: '0.6rem 1rem', textAlign: 'center' }}
+                      >
+                        Visit Forms Vault
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
+          </>
         )}
 
         {/* Search Modal Bar */}
@@ -801,6 +859,45 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
               </button>
             </div>
 
+            {/* Mobile Language Switcher */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', padding: '0.85rem 1.5rem', background: '#F8FAFC', borderBottom: '1px solid var(--border-hairline)' }}>
+              <button
+                onClick={() => setLanguage('en')}
+                style={{
+                  color: language === 'en' ? 'var(--ndb-red)' : 'var(--text-secondary)',
+                  fontWeight: language === 'en' ? 700 : 500,
+                  fontSize: '0.85rem',
+                  textDecoration: language === 'en' ? 'underline' : 'none'
+                }}
+              >
+                English
+              </button>
+              <span style={{ color: 'var(--border-subtle)' }}>|</span>
+              <button
+                onClick={() => setLanguage('si')}
+                style={{
+                  color: language === 'si' ? 'var(--ndb-red)' : 'var(--text-secondary)',
+                  fontWeight: language === 'si' ? 700 : 500,
+                  fontSize: '0.85rem',
+                  textDecoration: language === 'si' ? 'underline' : 'none'
+                }}
+              >
+                සිංහල
+              </button>
+              <span style={{ color: 'var(--border-subtle)' }}>|</span>
+              <button
+                onClick={() => setLanguage('ta')}
+                style={{
+                  color: language === 'ta' ? 'var(--ndb-red)' : 'var(--text-secondary)',
+                  fontWeight: language === 'ta' ? 700 : 500,
+                  fontSize: '0.85rem',
+                  textDecoration: language === 'ta' ? 'underline' : 'none'
+                }}
+              >
+                தமிழ்
+              </button>
+            </div>
+
             {/* Drawer Navigation List */}
             <div style={{ padding: '1rem 1.5rem', flexGrow: 1 }}>
               {/* Accordion 1: Personal */}
@@ -809,7 +906,7 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                   onClick={() => toggleAccordion('personal')}
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', fontWeight: 600, fontSize: '0.95rem', color: '#111827' }}
                 >
-                  <span>Personal Equities</span>
+                  <span>{t('personalEquities')}</span>
                   <ChevronRight size={16} style={{ transform: mobileAccordion === 'personal' ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }} />
                 </button>
                 {mobileAccordion === 'personal' && (
@@ -826,26 +923,38 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                     <Link href="/services#elevate" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
                       • NDB Elevate Private Wealth
                     </Link>
+                    <Link href="/services#debt" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Corporate Debentures &amp; Debt
+                    </Link>
+                    <Link href="/services#funds" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Mutual Funds &amp; Unit Trusts
+                    </Link>
                   </div>
                 )}
               </div>
 
-              {/* Accordion 2: Wholesale */}
+              {/* Accordion 2: Wholesale & Institutional */}
               <div style={{ borderBottom: '1px solid var(--border-hairline)', padding: '0.85rem 0' }}>
                 <button
                   onClick={() => toggleAccordion('wholesale')}
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', fontWeight: 600, fontSize: '0.95rem', color: '#111827' }}
                 >
-                  <span>Wholesale & Institutional</span>
+                  <span>{t('institutionalForeign')}</span>
                   <ChevronRight size={16} style={{ transform: mobileAccordion === 'wholesale' ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }} />
                 </button>
                 {mobileAccordion === 'wholesale' && (
                   <div style={{ paddingLeft: '0.75rem', paddingTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.875rem' }}>
                     <Link href="/services#institutional" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
-                      • Institutional Sales & Block Trades
+                      • Institutional Sales &amp; Block Trades
                     </Link>
                     <Link href="/services#foreign-desk" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
-                      • Foreign Desk & IIA Accounts
+                      • Foreign Desk &amp; IIA Accounts
+                    </Link>
+                    <Link href="/services#margin" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Margin &amp; Leverage Facilities
+                    </Link>
+                    <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Invest in Sri Lanka: Heritage &amp; Opportunity
                     </Link>
                     <a href="https://www.ndbib.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>
                       • NDB Investment Bank (NDBIB)
@@ -854,13 +963,13 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                 )}
               </div>
 
-              {/* Accordion 3: Research */}
+              {/* Accordion 3: Research & Markets */}
               <div style={{ borderBottom: '1px solid var(--border-hairline)', padding: '0.85rem 0' }}>
                 <button
                   onClick={() => toggleAccordion('research')}
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', fontWeight: 600, fontSize: '0.95rem', color: '#111827' }}
                 >
-                  <span>Research & Markets</span>
+                  <span>{t('researchMedia')}</span>
                   <ChevronRight size={16} style={{ transform: mobileAccordion === 'research' ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }} />
                 </button>
                 {mobileAccordion === 'research' && (
@@ -871,29 +980,85 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                     <Link href="/markets#directory" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
                       • Listed Equities Directory
                     </Link>
+                    <Link href="/markets#listings" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Upcoming Listings &amp; IPOs
+                    </Link>
                     <Link href="/research" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
-                      • Institutional Research Reports
+                      • Institutional Research Library
+                    </Link>
+                    <Link href="/research#macro" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Macro-Economic Forecasts
+                    </Link>
+                    <a href="https://www.youtube.com/@NDBSecuritiesLimited" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>
+                      • Market Commentary Videos
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {/* Accordion 4: NDB Group */}
+              <div style={{ borderBottom: '1px solid var(--border-hairline)', padding: '0.85rem 0' }}>
+                <button
+                  onClick={() => toggleAccordion('group')}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', fontWeight: 600, fontSize: '0.95rem', color: '#111827' }}
+                >
+                  <span>{t('aboutNdbGroup')}</span>
+                  <ChevronRight size={16} style={{ transform: mobileAccordion === 'group' ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }} />
+                </button>
+                {mobileAccordion === 'group' && (
+                  <div style={{ paddingLeft: '0.75rem', paddingTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.875rem' }}>
+                    <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • The Firm (NDB Securities)
+                    </Link>
+                    <a href="https://www.ndbch.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>
+                      • The Group (NDB Capital Holdings)
+                    </a>
+                    <a href="https://www.ndbbank.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>
+                      • The Conglomerate (NDB Bank PLC)
+                    </a>
+                    <Link href="/about#leadership" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Board of Directors &amp; Leadership
+                    </Link>
+                    <Link href="/about#careers" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Careers at NDB Securities
                     </Link>
                   </div>
                 )}
               </div>
 
-              {/* Direct links */}
+              {/* Accordion 5: Forms Vault */}
               <div style={{ borderBottom: '1px solid var(--border-hairline)', padding: '0.85rem 0' }}>
-                <Link href="/downloads" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '0.95rem', color: '#111827', display: 'block' }}>
-                  Downloads & Forms
-                </Link>
-              </div>
-
-              <div style={{ borderBottom: '1px solid var(--border-hairline)', padding: '0.85rem 0' }}>
-                <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '0.95rem', color: '#111827', display: 'block' }}>
-                  About NDB Securities
-                </Link>
+                <button
+                  onClick={() => toggleAccordion('downloads')}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', fontWeight: 600, fontSize: '0.95rem', color: '#111827' }}
+                >
+                  <span>{t('quickForms')}</span>
+                  <ChevronRight size={16} style={{ transform: mobileAccordion === 'downloads' ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }} />
+                </button>
+                {mobileAccordion === 'downloads' && (
+                  <div style={{ paddingLeft: '0.75rem', paddingTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.875rem' }}>
+                    <Link href="/downloads" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • CDS 1 Individual Form
+                    </Link>
+                    <Link href="/downloads" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • CDS 2 Corporate Form
+                    </Link>
+                    <Link href="/downloads" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Anti-Money Laundering (AML) Policy
+                    </Link>
+                    <Link href="/services#tariffs" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)' }}>
+                      • Brokerage Tariffs &amp; SEC Levies
+                    </Link>
+                    <Link href="/downloads" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
+                      • Visit All Forms Vault
+                    </Link>
+                  </div>
+                )}
               </div>
 
               <div style={{ padding: '0.85rem 0' }}>
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '0.95rem', color: '#111827', display: 'block' }}>
-                  Contact & Branch Network
+                  {t('contactUs')} &amp; Branch Network
                 </Link>
               </div>
             </div>
