@@ -1,76 +1,85 @@
 /* =========================================================================
-   NDB SECURITIES - CLEAN INSTITUTIONAL FINTECH DESIGN SYSTEM
-   High Clarity, Sharp Hairline Borders, Strict Max 8px Border Radius
+   NDB BANK & NDB SECURITIES - OFFICIAL CORPORATE THEME & DESIGN SYSTEM
+   Theme & Structure inspired by https://www.ndbbank.com/
+   Typography: Poppins | Palette: NDB Crimson (#cf152d), Plum (#82009f), Dark Navy
    ========================================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Crisp Canvas Palette */
+  /* NDB Official Brand Palette */
+  --ndb-red: #cf152d;
+  --ndb-red-hover: #b50e24;
+  --ndb-crimson: #cf152d;
+  --ndb-crimson-hover: #b50e24;
+  --ndb-crimson-subtle: rgba(207, 21, 45, 0.08);
+  
+  --ndb-plum: #82009f;
+  --ndb-pink: #f7345e;
+  --ndb-gradient: linear-gradient(-107deg, #82009f 0%, #cf152d 100%);
+  --ndb-gradient-vibrant: linear-gradient(-107deg, #82009f 0%, #f7345e 100%);
+  --ndb-gradient-header: linear-gradient(90deg, #700089 0%, #9e0c52 50%, #cf152d 100%);
+
+  /* Surface Colors */
   --bg-primary: #FFFFFF;
-  --bg-secondary: #F8FAFC;
-  --bg-tertiary: #F1F5F9;
+  --bg-secondary: #F8F9FA;
+  --bg-tertiary: #F1F3F5;
   --bg-card: #FFFFFF;
-  --bg-card-solid: #FFFFFF;
-  --bg-overlay: rgba(15, 23, 42, 0.6);
-  --bg-pill: rgba(15, 23, 42, 0.04);
-  --bg-pill-hover: rgba(15, 23, 42, 0.08);
+  --bg-dark: #111827;
+  --bg-black: #0B0F19;
+  --bg-footer: #0a0e17;
 
-  /* Precise Hairline Borders */
-  --border-hairline: #E2E8F0;
-  --border-subtle: #CBD5E1;
-  --border-accent: rgba(138, 0, 0, 0.25);
-  --border-glass: rgba(226, 232, 240, 0.9);
+  /* Borders */
+  --border-hairline: #E5E7EB;
+  --border-subtle: #D1D5DB;
+  --border-accent: rgba(207, 21, 45, 0.25);
 
-  /* High-Contrast Typography Colors */
-  --text-primary: #0F172A;
-  --text-secondary: #334155;
-  --text-tertiary: #64748B;
+  /* Typography Colors */
+  --text-primary: #1F2937;
+  --text-secondary: #4B5563;
+  --text-tertiary: #6B7280;
   --text-inverse: #FFFFFF;
 
-  /* Brand Accents & Market Semantics */
-  --ndb-crimson: #8A0000;
-  --ndb-crimson-hover: #9E0000;
-  --ndb-crimson-subtle: rgba(138, 0, 0, 0.06);
-  --ndb-gold: #B4831B;
-  
-  --apple-blue: #0284C7;
-  --apple-blue-hover: #0369A1;
-  --apple-blue-subtle: rgba(2, 132, 199, 0.08);
+  /* Market & UI Accents */
+  --gain-green: #10B981;
+  --gain-green-bg: #ECFDF5;
+  --gain-green-text: #047857;
 
-  --gain-green: #16A34A;
-  --gain-green-bg: #F0FDF4;
-  --gain-green-text: #15803D;
-
-  --loss-red: #DC2626;
+  --loss-red: #EF4444;
   --loss-red-bg: #FEF2F2;
   --loss-red-text: #B91C1C;
 
-  /* Subtle Clean Shadows */
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
-  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
-  --shadow-modal: 0 20px 25px -5px rgba(15, 23, 42, 0.15), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+  --apple-blue: #0284C7;
+  --apple-blue-subtle: rgba(2, 132, 199, 0.08);
 
-  /* Strict Border Radius Hierarchy (MAXIMUM 8px ANYWHERE) */
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+
+  /* Border Radii */
   --radius-xs: 2px;
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
-  --radius-xl: 8px;
-  --radius-full: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
 
-  /* Typography Font Stack */
-  --font-apple: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* Font Stacks */
+  --font-ndb: 'Poppins', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  /* Transition Speeds */
+  /* Transitions */
   --transition-fast: 0.15s ease;
-  --transition-normal: 0.2s ease;
-  --transition-slow: 0.3s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.4s ease;
 }
 
-/* Base Reset & Typography */
+/* =========================================================================
+   BASE RESETS & TYPOGRAPHY
+   ========================================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -81,49 +90,59 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 14px;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-apple);
+  font-family: var(--font-ndb);
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 14.5px;
+  }
 }
 
 body {
   overflow-x: hidden;
-  line-height: 1.5;
+  line-height: 1.6;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  font-family: var(--font-ndb);
 }
 
-/* Headings */
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.25;
+  font-family: var(--font-ndb);
 }
 
 h1 {
-  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-  letter-spacing: -0.035em;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  letter-spacing: -0.025em;
+  font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
 h3 {
-  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  font-weight: 600;
 }
 
 h4 {
   font-size: 1.15rem;
+  font-weight: 600;
 }
 
 p {
   color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 
 a {
@@ -141,32 +160,480 @@ button {
   transition: all var(--transition-fast);
 }
 
-input, select, textarea {
-  font-family: inherit;
-  outline: none;
-  color: var(--text-primary);
+/* NDB Color Class Helper (Exact from site.css) */
+.ndbcolor {
+  color: var(--ndb-red) !important;
 }
 
-/* =========================================================================
-   CLEAN ATOMIC COMPONENTS (STRICT <= 8PX RADII)
-   ========================================================================= */
+.bg-ndb-red {
+  background-color: var(--ndb-red) !important;
+  color: #FFFFFF !important;
+}
+
+.svgred {
+  fill: #cf152d;
+}
+
+.svgdark {
+  fill: #111827;
+}
+
+.whiteboth {
+  fill: #FFFFFF;
+}
 
 .container {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
 }
 
-/* Clean Header / Panel Surface */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* =========================================================================
+   NDB TOPBAR & HEADER
+   ========================================================================= */
+
+.ndb-topbar {
+  background: var(--ndb-gradient);
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ndb-topbar a {
+  color: rgba(255, 255, 255, 0.9);
+  transition: color var(--transition-fast);
+}
+
+.ndb-topbar a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+.ndb-topbar .active {
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.ndb-navbar {
+  background: #FFFFFF;
+  height: 72px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid var(--border-hairline);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
-/* Clean Badge / Tag (4px radius) */
+.ndb-nav-link {
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  padding: 1.5rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-bottom: 3px solid transparent;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ndb-nav-link:hover,
+.ndb-nav-link.active {
+  color: var(--ndb-red);
+  border-bottom: 3px solid var(--ndb-red);
+}
+
+.ndb-nav-link .chevron {
+  transition: transform var(--transition-fast);
+}
+
+.ndb-nav-link.active .chevron {
+  transform: rotate(180deg);
+}
+
+/* Mega Menu Dropdown (slideExpand animation matching site.css) */
+@keyframes slideExpand {
+  0% {
+    transform: translateY(-0.75rem) scaleY(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+}
+
+.mega-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-hairline);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
+  animation: slideExpand 0.25s ease-in-out forwards;
+  z-index: 1000;
+  padding: 2.25rem 0;
+}
+
+/* Buttons */
+.btn-ndb-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background-color: var(--ndb-red);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 4px rgba(207, 21, 45, 0.25);
+  transition: all var(--transition-fast);
+  border: 1px solid var(--ndb-red);
+}
+
+.btn-ndb-primary:hover {
+  background-color: var(--ndb-red-hover);
+  box-shadow: 0 4px 8px rgba(207, 21, 45, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-ndb-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ndb-red);
+  background: #FFFFFF;
+  border: 1.5px solid var(--ndb-red);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-ndb-outline:hover {
+  background: var(--ndb-crimson-subtle);
+  color: var(--ndb-red-hover);
+}
+
+/* =========================================================================
+   8-COLUMN HOME QUICK ACTION BAR (Exact NDB Bank layout)
+   ========================================================================= */
+
+.homequick-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  background: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+@media (min-width: 640px) {
+  .homequick-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .homequick-row {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+.homequickcont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 0.65rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  border-right: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  transition: all var(--transition-fast);
+  position: relative;
+  background: #FFFFFF;
+}
+
+.homequickcont:hover {
+  background: var(--bg-secondary);
+  color: var(--ndb-red);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  z-index: 2;
+}
+
+.homebtns {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+  background: var(--bg-secondary);
+  color: var(--ndb-red);
+  transition: all var(--transition-fast);
+}
+
+.homequickcont:hover .homebtns {
+  background: var(--ndb-red);
+  color: #FFFFFF;
+  transform: scale(1.08);
+}
+
+/* =========================================================================
+   SECTION 2: INVEST / BANK WITH US (Exact NDB Bank sec2)
+   ========================================================================= */
+
+.sec2 {
+  padding: 4.5rem 0;
+  background: var(--bg-secondary);
+}
+
+.sec2-intro-card {
+  background: #FFFFFF;
+  padding: 2.5rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid var(--border-hairline);
+}
+
+.sec2-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sec2-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: rgba(207, 21, 45, 0.3);
+}
+
+.sec2-card-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.sec2-card:hover .sec2-card-img {
+  transform: scale(1.04);
+}
+
+.sec2-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* =========================================================================
+   PROMO BANNER (Exact NDB Bank promo section)
+   ========================================================================= */
+
+.sec-promo {
+  background: linear-gradient(135deg, #111827 0%, #1f2937 60%, #374151 100%);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+/* =========================================================================
+   SECTION 3: OUR DIVERSIFIED OFFERINGS (Exact NDB Bank sec3)
+   ========================================================================= */
+
+.sec3 {
+  padding: 5rem 0;
+  background: #FFFFFF;
+}
+
+.sec3info {
+  background: #FFFFFF;
+  padding: 2.5rem;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.homecard {
+  background: #FFFFFF;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 1.75rem;
+  transition: all var(--transition-fast);
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+}
+
+.homecard:hover {
+  border-color: var(--ndb-red);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.group-icon-img {
+  margin-bottom: 1.25rem;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+/* =========================================================================
+   FLOATING SPEED DIAL QUICK MENU & VOICE ASSIST (Like NDB Bank)
+   ========================================================================= */
+
+.share-buttons {
+  position: fixed;
+  right: 0;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 1040;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.share-button-main {
+  width: 44px;
+  height: 44px;
+  background: var(--ndb-red);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px 0 0 4px;
+  cursor: pointer;
+  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background var(--transition-fast);
+}
+
+.share-button-main:hover {
+  background: var(--ndb-plum);
+}
+
+.share-menu-item {
+  background: #1F2937;
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.6rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 4px 0 0 4px;
+  cursor: pointer;
+  transform: translateX(calc(100% - 44px));
+  transition: transform var(--transition-normal), background var(--transition-fast);
+  white-space: nowrap;
+  box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.share-menu-item:hover {
+  transform: translateX(0);
+  background: var(--ndb-red);
+}
+
+/* Voice assist button on bottom left */
+.sound-play-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 1050;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ndb-red);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(207, 21, 45, 0.4);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sound-play-btn:hover {
+  transform: scale(1.08);
+  background: var(--ndb-red-hover);
+}
+
+/* =========================================================================
+   FOOTER (Exact NDB Bank Black / Dark Style)
+   ========================================================================= */
+
+.ndb-footer {
+  background: var(--bg-black);
+  color: #D1D5DB;
+  padding-top: 4.5rem;
+  border-top: 1px solid #1F2937;
+}
+
+.ndb-footer h5 {
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.ndb-footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.ndb-footer a {
+  color: #9CA3AF;
+  font-size: 0.85rem;
+  transition: color var(--transition-fast);
+}
+
+.ndb-footer a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+.ndb-subfooter {
+  background: #05070C;
+  border-top: 1px solid #111827;
+  padding: 1.5rem 0;
+  margin-top: 3.5rem;
+  font-size: 0.8rem;
+  color: #6B7280;
+}
+
+/* Existing Clean Badges and Helpers */
 .apple-badge {
   display: inline-flex;
   align-items: center;
@@ -185,13 +652,13 @@ input, select, textarea {
 .apple-badge.accent {
   background: var(--ndb-crimson-subtle);
   color: var(--ndb-crimson);
-  border-color: rgba(138, 0, 0, 0.15);
+  border-color: rgba(207, 21, 45, 0.2);
 }
 
 .apple-badge.success {
   background: var(--gain-green-bg);
   color: var(--gain-green-text);
-  border-color: #BBF7D0;
+  border-color: #A7F3D0;
 }
 
 .apple-badge.blue {
@@ -200,100 +667,10 @@ input, select, textarea {
   border-color: rgba(2, 132, 199, 0.2);
 }
 
-/* Primary Button (6px radius) */
-.btn-apple-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.4rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #FFFFFF;
-  background: var(--ndb-crimson);
-  border-radius: var(--radius-md);
-  box-shadow: 0 1px 2px rgba(138, 0, 0, 0.2);
-  transition: all var(--transition-fast);
-  border: 1px solid transparent;
-}
-
-.btn-apple-primary:hover {
-  background: var(--ndb-crimson-hover);
-  box-shadow: 0 2px 4px rgba(138, 0, 0, 0.25);
-}
-
-.btn-apple-primary:active {
-  transform: translateY(1px);
-}
-
-/* Secondary Button (6px radius) */
-.btn-apple-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.4rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  background: #FFFFFF;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-fast);
-}
-
-.btn-apple-secondary:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--text-tertiary);
-}
-
-.btn-apple-secondary:active {
-  transform: translateY(1px);
-}
-
-/* Clean Segmented Control (Container 6px, options 4px) */
-.segmented-control {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-md);
-  position: relative;
-  user-select: none;
-}
-
-.segmented-option {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.825rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-}
-
-.segmented-option:hover {
-  color: var(--text-primary);
-}
-
-.segmented-option.active {
-  color: var(--text-primary);
-  background: #FFFFFF;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--shadow-sm);
-}
-
-/* Bento & Data Cards (8px radius) */
 .bento-card {
   background: #FFFFFF;
   border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   padding: 1.75rem;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-fast);
@@ -305,52 +682,10 @@ input, select, textarea {
   box-shadow: var(--shadow-md);
 }
 
-/* Section Spacing */
-.section-pad {
-  padding: 5rem 0;
-}
-
-.section-pad-sm {
-  padding: 3rem 0;
-}
-
-.section-header {
-  margin-bottom: 2.75rem;
-  text-align: center;
-  max-width: 680px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.section-header h2 {
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.section-header p {
-  font-size: 1.05rem;
-}
-
-/* Pulse Status Dot (4px radius) */
-@keyframes pulseGlow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.15); }
-}
-
-.pulse-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: var(--radius-sm);
-  background-color: var(--gain-green);
-  display: inline-block;
-  animation: pulseGlow 2s infinite ease-in-out;
-}
-
-/* Modal Overlay & Dialog (8px radius) */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: var(--bg-overlay);
+  background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 9999;
@@ -363,8 +698,8 @@ input, select, textarea {
 
 .modal-content {
   background: #FFFFFF;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-modal);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
   border: 1px solid var(--border-hairline);
   width: 100%;
   max-width: 620px;
@@ -383,38 +718,4 @@ input, select, textarea {
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-/* Custom Clean Scrollbar (4px radius) */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: var(--radius-sm);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  .section-pad {
-    padding: 3.5rem 0;
-  }
-  .bento-card {
-    padding: 1.35rem;
-    border-radius: var(--radius-lg);
-  }
-  .modal-content {
-    padding: 1.5rem;
-    border-radius: var(--radius-lg);
-  }
 }

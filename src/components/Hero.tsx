@@ -1,237 +1,341 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ShieldCheck, Sparkles, TrendingUp, Award, Layers } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Sparkles, TrendingUp, ArrowUpRight } from 'lucide-react';
 
 interface HeroProps {
-  audience: 'local' | 'foreign';
+  audience?: 'local' | 'foreign';
   onOpenOnboarding: () => void;
 }
 
-export default function Hero({ audience, onOpenOnboarding }: HeroProps) {
-  const isForeign = audience === 'foreign';
+interface SlideItem {
+  id: number;
+  tag: string;
+  title: string;
+  subtitle: string;
+  primaryCta: { text: string; action: 'modal' | 'link'; href?: string };
+  secondaryCta: { text: string; href: string };
+  bgGradient: string;
+  accentColor: string;
+  bgImage?: string;
+  features: string[];
+}
+
+export default function Hero({ onOpenOnboarding }: HeroProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const slides: SlideItem[] = [
+    {
+      id: 1,
+      tag: 'National Development Bank Group • Capital Markets Pioneer',
+      title: 'The Future is Banking on Us',
+      subtitle: 'Innovating today to empower investors across the Colombo Stock Exchange with institutional precision, award-winning research, and direct market access.',
+      primaryCta: { text: 'Open Digital CDS Account', action: 'modal' },
+      secondaryCta: { text: 'Explore Live Markets', href: '/markets' },
+      bgGradient: 'linear-gradient(135deg, rgba(17, 24, 39, 0.92) 0%, rgba(31, 41, 55, 0.85) 50%, rgba(130, 0, 159, 0.7) 100%)',
+      accentColor: '#cf152d',
+      bgImage: 'https://ndbbankweb.ndbbank.com/media/c5882017-2b7c-465a-a825-5a5d0ab7c261_1.webp',
+      features: ['SEC Licensed Stockbroker', 'Full Trading Member CSE', 'Fitch A-(lka) Parentage']
+    },
+    {
+      id: 2,
+      tag: 'Direct Market Access • High Speed Execution',
+      title: 'Atrad DMA Trading & Real-Time Intelligence',
+      subtitle: 'Experience low-latency order routing, deep market book inspection, and live portfolio tracking tailored for retail and institutional traders alike.',
+      primaryCta: { text: 'Launch Atrad Portal', action: 'link', href: 'https://online.ndbs.lk' },
+      secondaryCta: { text: 'View Research Reports', href: '/research' },
+      bgGradient: 'linear-gradient(135deg, rgba(11, 15, 25, 0.94) 0%, rgba(15, 23, 42, 0.88) 50%, rgba(207, 21, 45, 0.65) 100%)',
+      accentColor: '#f7345e',
+      bgImage: 'https://ndbbankweb.ndbbank.com/media/31aa1fab-099e-45f3-8a8f-9c28bab5d933_2.webp',
+      features: ['Omnichannel Web & Mobile', 'CSE Direct Execution', 'Zero Account Opening Fee']
+    },
+    {
+      id: 3,
+      tag: 'Paperless Digital e-KYC • In Under 5 Minutes',
+      title: '100% Digital CDS Account Opening',
+      subtitle: 'Start your wealth generation journey today. Open your Central Depository System account entirely online with your Sri Lankan National Identity Card or Foreign Passport.',
+      primaryCta: { text: 'Start e-KYC Onboarding', action: 'modal' },
+      secondaryCta: { text: 'Download Account Guides', href: '/downloads' },
+      bgGradient: 'linear-gradient(135deg, rgba(20, 24, 36, 0.92) 0%, rgba(30, 41, 59, 0.85) 60%, rgba(112, 0, 137, 0.7) 100%)',
+      accentColor: '#cf152d',
+      bgImage: 'https://ndbbankweb.ndbbank.com/media/b632998b-a6a3-49f1-a66a-0cfe416dc9ce_3.webp',
+      features: ['Instant Verification', 'No Branch Visit Needed', 'Tax-Free Capital Gains']
+    }
+  ];
+
+  // Auto advance every 6 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isPaused, slides.length]);
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const current = slides[currentSlide];
 
   return (
-    <section style={{
-      position: 'relative',
-      paddingTop: '5rem',
-      paddingBottom: '5.5rem',
-      overflow: 'hidden',
-      borderBottom: '1px solid var(--border-hairline)'
-    }}>
-      {/* Background Cinematic Capital Markets Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: 0,
-          pointerEvents: 'none'
-        }}
-      >
-        <source src="/hero-bg.mp4" type="video/mp4" />
-        <source src="/NDB_Securities_capital_markets_v%E2%80%A6_20260922171653.mp4" type="video/mp4" />
-      </video>
+    <section
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      style={{
+        position: 'relative',
+        minHeight: '520px',
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+        background: '#0B0F19',
+        color: '#FFFFFF'
+      }}
+    >
+      {/* Background Media with Fade Transition */}
+      {slides.map((s, idx) => (
+        <div
+          key={s.id}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: idx === currentSlide ? 1 : 0,
+            transition: 'opacity 0.8s ease-in-out',
+            zIndex: 0
+          }}
+        >
+          {/* Subtle Stock Video / Image */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url(${s.bgImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'brightness(0.38) saturate(1.2)'
+            }}
+          />
+          {/* Gradient Overlay matching NDB colors */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: s.bgGradient
+            }}
+          />
+        </div>
+      ))}
 
-      {/* Subtle overlay so video is fully visible */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.3) 100%)',
-          zIndex: 1,
-          pointerEvents: 'none'
-        }}
-      />
-
-      {/* Hero Content */}
-      <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 2, padding: '0 2rem' }}>
-        {/* Eyebrow Badge (4px radius) */}
-        <div style={{ display: 'inline-flex', marginBottom: '1.25rem' }}>
-          <div className="apple-badge accent" style={{ padding: '0.35rem 0.85rem', fontSize: '0.8rem', background: '#FFFFFF', boxShadow: 'var(--shadow-sm)' }}>
-            <Sparkles size={13} />
-            <span>
-              {isForeign 
-                ? 'Global Investor Gateway • Tax-Free Equities in Sri Lanka' 
-                : 'Premier Stockbroking • A Subsidiary of NDB Bank'}
+      {/* Main Slide Content */}
+      <div className="container" style={{ position: 'relative', zIndex: 10, padding: '4.5rem 1.25rem', width: '100%' }}>
+        <div style={{ maxWidth: '820px' }}>
+          {/* Eyebrow Tag */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginBottom: '1.25rem' }}>
+            <span
+              style={{
+                background: 'rgba(255, 255, 255, 0.12)',
+                backdropFilter: 'blur(8px)',
+                border: '1px solid rgba(255, 255, 255, 0.25)',
+                color: '#FFFFFF',
+                padding: '0.35rem 0.85rem',
+                borderRadius: 'var(--radius-sm)',
+                fontSize: '0.785rem',
+                fontWeight: 600,
+                letterSpacing: '0.02em',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem'
+              }}
+            >
+              <Sparkles size={13} style={{ color: '#FCD34D' }} />
+              {current.tag}
             </span>
           </div>
+
+          {/* Headline */}
+          <h1
+            style={{
+              color: '#FFFFFF',
+              fontSize: 'clamp(2.2rem, 4.5vw, 3.6rem)',
+              fontWeight: 800,
+              lineHeight: 1.18,
+              letterSpacing: '-0.025em',
+              marginBottom: '1.25rem',
+              textShadow: '0 2px 10px rgba(0,0,0,0.5)'
+            }}
+          >
+            {current.title}
+          </h1>
+
+          {/* Subtitle */}
+          <p
+            style={{
+              color: 'rgba(255, 255, 255, 0.88)',
+              fontSize: 'clamp(1rem, 1.6vw, 1.18rem)',
+              lineHeight: 1.65,
+              marginBottom: '2.25rem',
+              maxWidth: '680px'
+            }}
+          >
+            {current.subtitle}
+          </p>
+
+          {/* Action Buttons */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
+            {current.primaryCta.action === 'modal' ? (
+              <button
+                onClick={onOpenOnboarding}
+                className="btn-ndb-primary"
+                style={{
+                  fontSize: '0.95rem',
+                  padding: '0.85rem 1.85rem',
+                  borderRadius: 'var(--radius-sm)',
+                  boxShadow: '0 4px 15px rgba(207, 21, 45, 0.45)'
+                }}
+              >
+                <span>{current.primaryCta.text}</span>
+                <ArrowRight size={16} />
+              </button>
+            ) : (
+              <a
+                href={current.primaryCta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ndb-primary"
+                style={{
+                  fontSize: '0.95rem',
+                  padding: '0.85rem 1.85rem',
+                  borderRadius: 'var(--radius-sm)',
+                  boxShadow: '0 4px 15px rgba(207, 21, 45, 0.45)'
+                }}
+              >
+                <span>{current.primaryCta.text}</span>
+                <ArrowUpRight size={16} />
+              </a>
+            )}
+
+            <Link
+              href={current.secondaryCta.href}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                color: '#FFFFFF',
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(8px)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                padding: '0.85rem 1.6rem',
+                borderRadius: 'var(--radius-sm)',
+                fontSize: '0.925rem',
+                fontWeight: 600,
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <span>{current.secondaryCta.text}</span>
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+
+          {/* Pill Highlights */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap', opacity: 0.9 }}>
+            {current.features.map((feat, idx) => (
+              <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', color: 'rgba(255,255,255,0.85)' }}>
+                <ShieldCheck size={14} style={{ color: '#34D399' }} />
+                <span>{feat}</span>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
 
-        {/* Display Headline */}
-        <h1 style={{
-          maxWidth: '920px',
-          margin: '0 auto 1.25rem auto',
-          fontWeight: 800,
-          letterSpacing: '-0.035em'
-        }}>
-          {isForeign ? (
-            <>
-              Invest in Sri Lanka’s <span style={{
-                background: 'linear-gradient(135deg, #8A0000 20%, #B91C1C 80%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>Emerging Growth.</span>
-            </>
-          ) : (
-            <>
-              Institutional Power. <br />
-              <span style={{
-                background: 'linear-gradient(135deg, #8A0000 20%, #B91C1C 80%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>Personalized Wealth Growth.</span>
-            </>
-          )}
-        </h1>
-
-        {/* Subtitle */}
-        <p style={{
-          maxWidth: '680px',
-          margin: '0 auto 2.25rem auto',
-          fontSize: '1.125rem',
-          lineHeight: 1.6,
-          color: 'var(--text-secondary)'
-        }}>
-          {isForeign
-            ? 'Seamless cross-border trading on the Colombo Stock Exchange (CSE) with global custodian settlement, Inward Investment Accounts (IIA), and 100% capital repatriation.'
-            : 'Access Sri Lanka’s frontier equity and fixed income markets with premier institutional research, dedicated personal investment advisors, and direct digital execution.'}
-        </p>
-
-        {/* Action Buttons (6px radius) */}
-        <div style={{
+      {/* Navigation Controls (Arrows) */}
+      <button
+        onClick={prevSlide}
+        aria-label="Previous Slide"
+        style={{
+          position: 'absolute',
+          left: '1rem',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 20,
+          width: '44px',
+          height: '44px',
+          borderRadius: '50%',
+          background: 'rgba(0, 0, 0, 0.45)',
+          backdropFilter: 'blur(6px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          color: '#FFFFFF',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '1rem',
-          flexWrap: 'wrap',
-          marginBottom: '3.75rem'
-        }}>
+          cursor: 'pointer',
+          transition: 'all 0.2s'
+        }}
+      >
+        <ChevronLeft size={24} />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        aria-label="Next Slide"
+        style={{
+          position: 'absolute',
+          right: '1rem',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 20,
+          width: '44px',
+          height: '44px',
+          borderRadius: '50%',
+          background: 'rgba(0, 0, 0, 0.45)',
+          backdropFilter: 'blur(6px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          color: '#FFFFFF',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          transition: 'all 0.2s'
+        }}
+      >
+        <ChevronRight size={24} />
+      </button>
+
+      {/* Slide Indicators (Pills at Bottom) */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '1.5rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 20,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.65rem'
+        }}
+      >
+        {slides.map((_, idx) => (
           <button
-            onClick={onOpenOnboarding}
-            className="btn-apple-primary"
-            style={{ fontSize: '0.95rem', padding: '0.85rem 2rem' }}
-          >
-            <span>{isForeign ? 'Open International Account' : 'Open CDS Account Online'}</span>
-            <ArrowRight size={16} />
-          </button>
-
-          <Link
-            href="/research"
-            className="btn-apple-secondary"
-            style={{ fontSize: '0.95rem', padding: '0.85rem 1.75rem' }}
-          >
-            <span>Browse Research Library</span>
-          </Link>
-        </div>
-
-        {/* 4 Clean Institutional Trust Metric Cards (8px radius, clean 1px border) */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '1.25rem',
-          maxWidth: '1120px',
-          margin: '0 auto'
-        }}>
-          <div className="bento-card" style={{ padding: '1.5rem', textAlign: 'left', background: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: 'var(--radius-md)',
-              background: 'var(--ndb-crimson-subtle)',
-              color: 'var(--ndb-crimson)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '1rem',
-              border: '1px solid rgba(138, 0, 0, 0.12)'
-            }}>
-              <Award size={22} />
-            </div>
-            <div style={{ fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-              Over 30 Years
-            </div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem', lineHeight: 1.5 }}>
-              Pioneering Sri Lankan capital markets since 1992 as a CSE founder member.
-            </div>
-          </div>
-
-          <div className="bento-card" style={{ padding: '1.5rem', textAlign: 'left', background: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: 'var(--radius-md)',
-              background: 'var(--apple-blue-subtle)',
-              color: 'var(--apple-blue)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '1rem',
-              border: '1px solid rgba(2, 132, 199, 0.15)'
-            }}>
-              <TrendingUp size={22} />
-            </div>
-            <div style={{ fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-              100% Digital
-            </div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem', lineHeight: 1.5 }}>
-              Paperless e-KYC onboarding & instant trade confirmations with zero friction.
-            </div>
-          </div>
-
-          <div className="bento-card" style={{ padding: '1.5rem', textAlign: 'left', background: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: 'var(--radius-md)',
-              background: 'var(--gain-green-bg)',
-              color: 'var(--gain-green)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '1rem',
-              border: '1px solid #BBF7D0'
-            }}>
-              <ShieldCheck size={22} />
-            </div>
-            <div style={{ fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-              SEC Licensed
-            </div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem', lineHeight: 1.5 }}>
-              Regulated by the Securities & Exchange Commission with highest fiduciary standards.
-            </div>
-          </div>
-
-          <div className="bento-card" style={{ padding: '1.5rem', textAlign: 'left', background: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: 'var(--radius-md)',
-              background: 'rgba(180, 131, 27, 0.08)',
-              color: 'var(--ndb-gold)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '1rem',
-              border: '1px solid rgba(180, 131, 27, 0.2)'
-            }}>
-              <Layers size={22} />
-            </div>
-            <div style={{ fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-              NDB Group
-            </div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem', lineHeight: 1.5 }}>
-              Backed by NDB Capital Holdings and National Development Bank PLC balance sheet.
-            </div>
-          </div>
-        </div>
+            key={idx}
+            onClick={() => setCurrentSlide(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+            style={{
+              width: idx === currentSlide ? '36px' : '10px',
+              height: '8px',
+              borderRadius: '4px',
+              background: idx === currentSlide ? 'var(--ndb-red)' : 'rgba(255, 255, 255, 0.4)',
+              transition: 'all 0.3s ease',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          />
+        ))}
       </div>
     </section>
   );
