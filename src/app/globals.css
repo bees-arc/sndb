@@ -277,13 +277,85 @@ button {
   position: absolute;
   top: 100%;
   left: 0;
+  right: 0;
   width: 100%;
   background: #FFFFFF;
   border-top: 1px solid var(--border-hairline);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
-  animation: slideExpand 0.25s ease-in-out forwards;
-  z-index: 1000;
-  padding: 2.25rem 0;
+  border-bottom: 3px solid var(--ndb-red);
+  box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.15);
+  animation: slideExpand 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 1050;
+  padding: 2.25rem 0 2.5rem 0;
+}
+
+.mega-dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.mega-col-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ndb-red);
+  margin-bottom: 1.15rem;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mega-menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.mega-menu-item-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.mega-menu-item-link:hover {
+  background: var(--bg-secondary);
+  transform: translateX(4px);
+}
+
+.mega-menu-item-link:hover .mega-link-title {
+  color: var(--ndb-red) !important;
+}
+
+.mega-link-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.mega-link-desc {
+  font-size: 0.785rem;
+  color: var(--text-tertiary);
+  margin-top: 0.15rem;
+  line-height: 1.45;
+}
+
+.mega-promo-box {
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 /* Buttons */

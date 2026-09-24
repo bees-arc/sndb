@@ -26,6 +26,8 @@ import {
   ArrowRight
 } from 'lucide-react';
 
+import { useLanguage } from '@/context/LanguageContext';
+
 interface HeaderProps {
   audience?: 'local' | 'foreign';
   onAudienceChange?: (audience: 'local' | 'foreign') => void;
@@ -33,12 +35,12 @@ interface HeaderProps {
 }
 
 export default function Header({ onOpenOnboarding }: HeaderProps) {
+  const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'si' | 'ta'>('en');
   const [fontSizeLevel, setFontSizeLevel] = useState<number>(0);
   const [isDarkMode, setIsDarkMode] = useState(false);
   
@@ -77,15 +79,15 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
           {/* Top Left Links (Exact NDB Bank Style) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
-            <Link href="/about" className="small">About Us</Link>
-            <Link href="/markets" className="small">News & Notices</Link>
-            <Link href="/research" className="small">Research Reports</Link>
-            <Link href="/about#leadership" className="small">People & Culture</Link>
-            <Link href="/about" className="small">Sustainability</Link>
+            <Link href="/about" className="small">{t('aboutUs')}</Link>
+            <Link href="/markets" className="small">{t('newsNotices')}</Link>
+            <Link href="/research" className="small">{t('researchReports')}</Link>
+            <Link href="/about#leadership" className="small">{t('peopleCulture')}</Link>
+            <Link href="/about" className="small">{t('sustainability')}</Link>
             <a href="https://www.ndbbank.com/investor-relations" target="_blank" rel="noopener noreferrer" className="small">
-              Investor Relations
+              {t('investorRelations')}
             </a>
-            <Link href="/contact" className="small">Contact Us</Link>
+            <Link href="/contact" className="small">{t('contactUs')}</Link>
           </div>
 
           {/* Top Right Utilities (Languages, Font Resizer, Theme Toggle, Phone) */}
@@ -93,33 +95,36 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
             {/* Language Selector */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', borderRight: '1px solid rgba(255,255,255,0.25)', paddingRight: '0.75rem' }}>
               <button
-                onClick={() => setSelectedLanguage('en')}
+                onClick={() => setLanguage('en')}
                 style={{
-                  color: selectedLanguage === 'en' ? '#FFFFFF' : 'rgba(255,255,255,0.75)',
-                  fontWeight: selectedLanguage === 'en' ? 700 : 400,
-                  fontSize: '0.775rem'
+                  color: language === 'en' ? '#FFFFFF' : 'rgba(255,255,255,0.75)',
+                  fontWeight: language === 'en' ? 700 : 400,
+                  fontSize: '0.775rem',
+                  textDecoration: language === 'en' ? 'underline' : 'none'
                 }}
               >
                 English
               </button>
               <span style={{ opacity: 0.4 }}>|</span>
               <button
-                onClick={() => setSelectedLanguage('si')}
+                onClick={() => setLanguage('si')}
                 style={{
-                  color: selectedLanguage === 'si' ? '#FFFFFF' : 'rgba(255,255,255,0.75)',
-                  fontWeight: selectedLanguage === 'si' ? 700 : 400,
-                  fontSize: '0.775rem'
+                  color: language === 'si' ? '#FFFFFF' : 'rgba(255,255,255,0.75)',
+                  fontWeight: language === 'si' ? 700 : 400,
+                  fontSize: '0.775rem',
+                  textDecoration: language === 'si' ? 'underline' : 'none'
                 }}
               >
                 සිංහල
               </button>
               <span style={{ opacity: 0.4 }}>|</span>
               <button
-                onClick={() => setSelectedLanguage('ta')}
+                onClick={() => setLanguage('ta')}
                 style={{
-                  color: selectedLanguage === 'ta' ? '#FFFFFF' : 'rgba(255,255,255,0.75)',
-                  fontWeight: selectedLanguage === 'ta' ? 700 : 400,
-                  fontSize: '0.775rem'
+                  color: language === 'ta' ? '#FFFFFF' : 'rgba(255,255,255,0.75)',
+                  fontWeight: language === 'ta' ? 700 : 400,
+                  fontSize: '0.775rem',
+                  textDecoration: language === 'ta' ? 'underline' : 'none'
                 }}
               >
                 தமிழ்
@@ -183,29 +188,18 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
       {/* 2. Main Navbar (NDB White with subtle shadow) */}
       <nav className="ndb-navbar">
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-          {/* Logo with NDB Corporate Mark */}
-          <Link href="/" onClick={closeDropdown} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            {/* Authentic NDB Geometric Shape Icon */}
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <svg width="42" height="42" viewBox="0 0 180 53" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.2 2.2V13.3L20.1 2.2H1.2Z" fill="#111827" />
-                <path d="M4.8 27H25.6V6.2L4.8 27Z" fill="#111827" />
-                <path d="M1.2 16.3V27.1L27.6 0.7L1.2 16.3Z" fill="#cf152d" />
-                <path d="M46.2 2.2V19.5L36.4 2.2H31V27H35.8V9.4L45.8 27.1H50.9V2.2H46.2Z" fill="#cf152d" />
-                <path d="M66 2.2H55.3V27H65.9C74 27 76 19.3 76 14C76 8.7 74.3 2.2 66.1 2.2H66ZM65.2 22.7H60.2V6.5H65.1C67.3 6.5 70.7 7.1 70.7 14.4C70.7 21.7 69.3 22.7 65.2 22.7Z" fill="#cf152d" />
-                <path d="M95.6 13.6C96.6 13.1 98.6 12.1 98.6 8.5C98.6 4.9 97.1 2.2 91.1 2.2H79.2V27H89.6C94.6 27 95.9 26.1 97.3 24.7C98.6 23.4 99.4 21.6 99.4 19.6C99.4 17.6 98.6 14.8 95.6 13.6ZM84 6.5H89.9C92.2 6.5 93.7 7.1 93.7 9.2C93.7 11.3 92.1 11.9 90.1 11.9H84.1V6.5H84ZM90.2 22.7H84V16.1H90.4C92.3 16.1 94.1 16.9 94.1 19.1C94.1 21.3 92.7 22.7 90.2 22.7Z" fill="#cf152d" />
-                <path d="M179 33.7H1.2V51.6H179V33.7Z" fill="#cf152d" />
-              </svg>
-            </div>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.02em', color: '#111827' }}>NDB</span>
-                <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--ndb-red)' }}>SECURITIES</span>
-              </div>
-              <div style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.08em', color: 'var(--text-tertiary)', textTransform: 'uppercase' }}>
-                Member Colombo Stock Exchange
-              </div>
-            </div>
+          {/* Official NDB Securities Logo */}
+          <Link href="/" onClick={closeDropdown} style={{ display: 'flex', alignItems: 'center', padding: '0.25rem 0' }}>
+            <img
+              src="/ndb-securities-logo.png"
+              alt="NDB Securities"
+              style={{
+                height: '48px',
+                width: 'auto',
+                display: 'block',
+                objectFit: 'contain'
+              }}
+            />
           </Link>
 
           {/* Desktop Navigation Links with Mega-Menu Dropdowns (Exact NDB Bank Style) */}
@@ -220,7 +214,7 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                 className={`ndb-nav-link ${activeDropdown === 'personal' ? 'active' : ''}`}
                 onClick={() => setActiveDropdown(activeDropdown === 'personal' ? null : 'personal')}
               >
-                <span>Personal Equities</span>
+                <span>{t('personalEquities')}</span>
                 <ChevronDown size={14} className="chevron" />
               </button>
 
@@ -338,7 +332,7 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                 className={`ndb-nav-link ${activeDropdown === 'wholesale' ? 'active' : ''}`}
                 onClick={() => setActiveDropdown(activeDropdown === 'wholesale' ? null : 'wholesale')}
               >
-                <span>Wholesale & Institutional</span>
+                <span>{t('institutionalForeign')}</span>
                 <ChevronDown size={14} className="chevron" />
               </button>
 
@@ -431,7 +425,7 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                 className={`ndb-nav-link ${activeDropdown === 'research' ? 'active' : ''}`}
                 onClick={() => setActiveDropdown(activeDropdown === 'research' ? null : 'research')}
               >
-                <span>Research & Markets</span>
+                <span>{t('researchMedia')}</span>
                 <ChevronDown size={14} className="chevron" />
               </button>
 
@@ -523,7 +517,7 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
                 className={`ndb-nav-link ${activeDropdown === 'group' ? 'active' : ''}`}
                 onClick={() => setActiveDropdown(activeDropdown === 'group' ? null : 'group')}
               >
-                <span>NDB Group</span>
+                <span>{t('aboutNdbGroup')}</span>
                 <ChevronDown size={14} className="chevron" />
               </button>
 
@@ -555,7 +549,7 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
 
             {/* 5. Downloads & Forms */}
             <Link href="/downloads" className="ndb-nav-link">
-              <span>Downloads</span>
+              <span>{t('quickForms')}</span>
             </Link>
           </div>
 
@@ -588,7 +582,7 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
               className="btn-ndb-outline"
               style={{ fontSize: '0.825rem', padding: '0.5rem 1rem', display: 'none' }}
             >
-              <span>Atrad Portal</span>
+              <span>{t('atradDmaPortal')}</span>
               <ArrowUpRight size={13} />
             </a>
 
@@ -598,7 +592,7 @@ export default function Header({ onOpenOnboarding }: HeaderProps) {
               className="btn-ndb-primary"
               style={{ fontSize: '0.85rem', padding: '0.55rem 1.25rem' }}
             >
-              <span>Open CDS Account</span>
+              <span>{t('digitalCdsAccount')}</span>
             </button>
 
             {/* Mobile Hamburger Button */}

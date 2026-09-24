@@ -22,18 +22,21 @@ interface SlideItem {
   features: string[];
 }
 
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function Hero({ onOpenOnboarding }: HeroProps) {
+  const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
   const slides: SlideItem[] = [
     {
       id: 1,
-      tag: 'National Development Bank Group • Capital Markets Pioneer',
-      title: 'The Future is Banking on Us',
-      subtitle: 'Innovating today to empower investors across the Colombo Stock Exchange with institutional precision, award-winning research, and direct market access.',
-      primaryCta: { text: 'Open Digital CDS Account', action: 'modal' },
-      secondaryCta: { text: 'Explore Live Markets', href: '/markets' },
+      tag: t('heroPioneer'),
+      title: t('heroSlide1Title'),
+      subtitle: t('heroSlide1Subtitle'),
+      primaryCta: { text: t('openDigitalAccount'), action: 'modal' },
+      secondaryCta: { text: t('exploreMarkets'), href: '/markets' },
       bgGradient: 'linear-gradient(135deg, rgba(17, 24, 39, 0.92) 0%, rgba(31, 41, 55, 0.85) 50%, rgba(130, 0, 159, 0.7) 100%)',
       accentColor: '#cf152d',
       bgImage: 'https://ndbbankweb.ndbbank.com/media/c5882017-2b7c-465a-a825-5a5d0ab7c261_1.webp',
@@ -41,11 +44,11 @@ export default function Hero({ onOpenOnboarding }: HeroProps) {
     },
     {
       id: 2,
-      tag: 'Direct Market Access • High Speed Execution',
-      title: 'Atrad DMA Trading & Real-Time Intelligence',
-      subtitle: 'Experience low-latency order routing, deep market book inspection, and live portfolio tracking tailored for retail and institutional traders alike.',
-      primaryCta: { text: 'Launch Atrad Portal', action: 'link', href: 'https://online.ndbs.lk' },
-      secondaryCta: { text: 'View Research Reports', href: '/research' },
+      tag: t('heroSlide2Tag'),
+      title: t('heroSlide2Title'),
+      subtitle: t('heroSlide2Subtitle'),
+      primaryCta: { text: t('launchAtrad'), action: 'link', href: 'https://online.ndbs.lk' },
+      secondaryCta: { text: t('viewResearch'), href: '/research' },
       bgGradient: 'linear-gradient(135deg, rgba(11, 15, 25, 0.94) 0%, rgba(15, 23, 42, 0.88) 50%, rgba(207, 21, 45, 0.65) 100%)',
       accentColor: '#f7345e',
       bgImage: 'https://ndbbankweb.ndbbank.com/media/31aa1fab-099e-45f3-8a8f-9c28bab5d933_2.webp',
@@ -53,11 +56,11 @@ export default function Hero({ onOpenOnboarding }: HeroProps) {
     },
     {
       id: 3,
-      tag: 'Paperless Digital e-KYC • In Under 5 Minutes',
-      title: '100% Digital CDS Account Opening',
-      subtitle: 'Start your wealth generation journey today. Open your Central Depository System account entirely online with your Sri Lankan National Identity Card or Foreign Passport.',
-      primaryCta: { text: 'Start e-KYC Onboarding', action: 'modal' },
-      secondaryCta: { text: 'Download Account Guides', href: '/downloads' },
+      tag: t('heroSlide3Tag'),
+      title: t('heroSlide3Title'),
+      subtitle: t('heroSlide3Subtitle'),
+      primaryCta: { text: t('openDigitalAccount'), action: 'modal' },
+      secondaryCta: { text: t('downloadGuides'), href: '/downloads' },
       bgGradient: 'linear-gradient(135deg, rgba(20, 24, 36, 0.92) 0%, rgba(30, 41, 59, 0.85) 60%, rgba(112, 0, 137, 0.7) 100%)',
       accentColor: '#cf152d',
       bgImage: 'https://ndbbankweb.ndbbank.com/media/b632998b-a6a3-49f1-a66a-0cfe416dc9ce_3.webp',
@@ -135,28 +138,6 @@ export default function Hero({ onOpenOnboarding }: HeroProps) {
       {/* Main Slide Content */}
       <div className="container" style={{ position: 'relative', zIndex: 10, padding: '4.5rem 1.25rem', width: '100%' }}>
         <div style={{ maxWidth: '820px' }}>
-          {/* Eyebrow Tag */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginBottom: '1.25rem' }}>
-            <span
-              style={{
-                background: 'rgba(255, 255, 255, 0.12)',
-                backdropFilter: 'blur(8px)',
-                border: '1px solid rgba(255, 255, 255, 0.25)',
-                color: '#FFFFFF',
-                padding: '0.35rem 0.85rem',
-                borderRadius: 'var(--radius-sm)',
-                fontSize: '0.785rem',
-                fontWeight: 600,
-                letterSpacing: '0.02em',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem'
-              }}
-            >
-              <Sparkles size={13} style={{ color: '#FCD34D' }} />
-              {current.tag}
-            </span>
-          </div>
 
           {/* Headline */}
           <h1
