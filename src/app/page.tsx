@@ -34,8 +34,10 @@ import {
   Building
 } from 'lucide-react';
 import { SAMPLE_CSE_STOCKS } from '@/data/ndbsData';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
+  const { t, language } = useLanguage();
   const [audience, setAudience] = useState<'local' | 'foreign'>('local');
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -89,7 +91,7 @@ export default function Home() {
             <div className="homebtns">
               <UserCheck size={22} />
             </div>
-            <span>Digital CDS Account</span>
+            <span>{t('quickCds')}</span>
           </button>
 
           {/* 2. Atrad DMA Portal */}
@@ -103,7 +105,7 @@ export default function Home() {
             <div className="homebtns">
               <Monitor size={22} />
             </div>
-            <span>Atrad DMA Portal</span>
+            <span>{t('quickAtrad')}</span>
           </a>
 
           {/* 3. CSE Live Feed */}
@@ -111,7 +113,7 @@ export default function Home() {
             <div className="homebtns">
               <Activity size={22} />
             </div>
-            <span>CSE Live Feed</span>
+            <span>{t('quickCse')}</span>
           </Link>
 
           {/* 4. Research Reports */}
@@ -119,7 +121,7 @@ export default function Home() {
             <div className="homebtns">
               <BookOpen size={22} />
             </div>
-            <span>Research Desk</span>
+            <span>{t('quickResearch')}</span>
           </Link>
 
           {/* 5. Listed Corporate Debt */}
@@ -127,7 +129,7 @@ export default function Home() {
             <div className="homebtns">
               <Layers size={22} />
             </div>
-            <span>Corporate Debt</span>
+            <span>{t('quickDebt')}</span>
           </Link>
 
           {/* 6. Margin Trading */}
@@ -135,7 +137,7 @@ export default function Home() {
             <div className="homebtns">
               <DollarSign size={22} />
             </div>
-            <span>Margin Trading</span>
+            <span>{t('quickMargin')}</span>
           </Link>
 
           {/* 7. Forms & Downloads */}
@@ -143,7 +145,7 @@ export default function Home() {
             <div className="homebtns">
               <Download size={22} />
             </div>
-            <span>Forms Vault</span>
+            <span>{t('quickForms')}</span>
           </Link>
 
           {/* 8. Branch Locator */}
@@ -151,7 +153,7 @@ export default function Home() {
             <div className="homebtns">
               <MapPin size={22} />
             </div>
-            <span>Branch Locator</span>
+            <span>{t('quickBranches')}</span>
           </Link>
         </div>
       </section>
@@ -186,18 +188,18 @@ export default function Home() {
                 }}
               >
                 <Award size={15} />
-                <span>NDB Securities Advantage</span>
+                <span>{t('investAdvantage')}</span>
               </div>
               <h2 style={{ fontSize: '1.85rem', fontWeight: 800, marginBottom: '1rem', color: '#111827' }}>
-                Invest with <br />
-                <span className="ndbcolor">NDB Securities</span>
+                {t('investTitle')} <br />
+                <span className="ndbcolor">{t('investSubtitle')}</span>
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.925rem', lineHeight: 1.65, marginBottom: '1.75rem' }}>
-                Backed by the financial strength and heritage of National Development Bank PLC, we provide direct market access, institutional execution, and award-winning research for individual and global institutional investors.
+                {t('investDesc')}
               </p>
               <div>
                 <Link href="/services" className="btn-ndb-primary" style={{ padding: '0.75rem 1.6rem' }}>
-                  <span>Explore All Services</span>
+                  <span>{t('exploreServices')}</span>
                   <ArrowRight size={16} />
                 </Link>
               </div>
@@ -226,15 +228,15 @@ export default function Home() {
                     textTransform: 'uppercase'
                   }}
                 >
-                  Retail &amp; Private Clients
+                  {t('retailClientTag')}
                 </span>
               </div>
               <div className="sec2-card-body">
                 <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '0.5rem', color: '#111827' }}>
-                  Direct Equity Execution &amp; DMA
+                  {t('retailClientTitle')}
                 </h3>
                 <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem', flexGrow: 1 }}>
-                  Trade shares in real-time with direct integration to the Colombo Stock Exchange matching engine via our omnichannel Atrad web and mobile platforms.
+                  {t('retailClientDesc')}
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <button
@@ -248,14 +250,14 @@ export default function Home() {
                       color: 'var(--ndb-red)'
                     }}
                   >
-                    <span>Open Account</span>
+                    <span>{t('openAccount')}</span>
                     <ArrowRight size={14} />
                   </button>
                   <Link
                     href="/services#equities"
                     style={{ fontSize: '0.825rem', color: 'var(--text-tertiary)', fontWeight: 500 }}
                   >
-                    Details &rarr;
+                    {t('details')} &rarr;
                   </Link>
                 </div>
               </div>
@@ -284,15 +286,15 @@ export default function Home() {
                     textTransform: 'uppercase'
                   }}
                 >
-                  Institutional &amp; Global
+                  {t('institutionalTag')}
                 </span>
               </div>
               <div className="sec2-card-body">
                 <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '0.5rem', color: '#111827' }}>
-                  Institutional Block Trading &amp; IIA
+                  {t('institutionalTitle')}
                 </h3>
                 <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem', flexGrow: 1 }}>
-                  Bespoke execution for mutual funds, foreign portfolio managers, and family offices with full Inward Investment Account (IIA) custodian bank settlement.
+                  {t('institutionalDesc')}
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <Link
@@ -306,14 +308,14 @@ export default function Home() {
                       color: 'var(--ndb-red)'
                     }}
                   >
-                    <span>Inward Investment Desk</span>
+                    <span>{t('foreignInvestor')}</span>
                     <ArrowRight size={14} />
                   </Link>
                   <Link
                     href="/services#institutional"
                     style={{ fontSize: '0.825rem', color: 'var(--text-tertiary)', fontWeight: 500 }}
                   >
-                    Details &rarr;
+                    {t('details')} &rarr;
                   </Link>
                 </div>
               </div>
@@ -342,15 +344,15 @@ export default function Home() {
                     textTransform: 'uppercase'
                   }}
                 >
-                  Fixed Income
+                  {t('fixedIncomeTag')}
                 </span>
               </div>
               <div className="sec2-card-body">
                 <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '0.5rem', color: '#111827' }}>
-                  Listed Debentures &amp; Corporate Debt
+                  {t('fixedIncomeTitle')}
                 </h3>
                 <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem', flexGrow: 1 }}>
-                  High-yield fixed-income corporate debentures, senior/subordinated notes, and primary syndication to optimize risk-adjusted returns.
+                  {t('fixedIncomeDesc')}
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <Link
@@ -364,14 +366,14 @@ export default function Home() {
                       color: 'var(--ndb-red)'
                     }}
                   >
-                    <span>View Debt Listings</span>
+                    <span>{t('details')}</span>
                     <ArrowRight size={14} />
                   </Link>
                   <Link
                     href="/services#tariffs"
                     style={{ fontSize: '0.825rem', color: 'var(--text-tertiary)', fontWeight: 500 }}
                   >
-                    Tariffs &rarr;
+                    {t('tariffSchedule')} &rarr;
                   </Link>
                 </div>
               </div>
@@ -409,13 +411,13 @@ export default function Home() {
                 }}
               >
                 <ShieldCheck size={14} style={{ color: '#34D399' }} />
-                <span>100% Digital e-KYC • SEC Licensed Member</span>
+                <span>{t('promoBadge')}</span>
               </div>
               <h2 style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', fontWeight: 800, color: '#FFFFFF', marginBottom: '1rem', lineHeight: 1.25 }}>
-                Begin Investing in Sri Lankan Equities Today
+                {t('promoTitle')}
               </h2>
               <p style={{ color: 'rgba(255, 255, 255, 0.82)', fontSize: '1.025rem', lineHeight: 1.65, marginBottom: '2rem' }}>
-                Open your Central Depository Systems (CDS) account in under 5 minutes with your Sri Lankan NIC or Passport. Enjoy zero account maintenance fees, real-time Atrad trading access, and personal advisory.
+                {t('promoDesc')}
               </p>
 
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -428,7 +430,7 @@ export default function Home() {
                     boxShadow: '0 4px 15px rgba(207, 21, 45, 0.5)'
                   }}
                 >
-                  <span>Open Digital CDS Account</span>
+                  <span>{t('openDigitalAccount')}</span>
                   <ArrowRight size={16} />
                 </button>
                 <Link
@@ -447,7 +449,7 @@ export default function Home() {
                     fontWeight: 600
                   }}
                 >
-                  <span>Speak to an Advisor</span>
+                  <span>{t('speakAdvisor')}</span>
                   <PhoneCall size={15} />
                 </Link>
               </div>
@@ -478,7 +480,7 @@ export default function Home() {
                   30+
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.75)', marginTop: '0.25rem' }}>
-                  Years Capital Market Leadership
+                  {t('statYears')}
                 </div>
               </div>
 
@@ -496,7 +498,7 @@ export default function Home() {
                   Fitch A-
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.75)', marginTop: '0.25rem' }}>
-                  National Long-Term Rating
+                  {t('statRating')}
                 </div>
               </div>
 
@@ -514,7 +516,7 @@ export default function Home() {
                   Rs. 50B+
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.75)', marginTop: '0.25rem' }}>
-                  Annual Traded Equity Volume
+                  {t('statVolume')}
                 </div>
               </div>
 
@@ -532,7 +534,7 @@ export default function Home() {
                   100%
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.75)', marginTop: '0.25rem' }}>
-                  Paperless Digital e-KYC
+                  {t('statDigital')}
                 </div>
               </div>
             </div>
@@ -660,6 +662,66 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Upcoming Listings & NDBS Media Playlists (Exact from ndbs.lk) */}
+          <div style={{ marginTop: '2.5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            <div className="homecard" style={{ borderLeft: '4px solid var(--ndb-red)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--ndb-red)', fontWeight: 700, fontSize: '0.8rem', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                <TrendingUp size={15} />
+                <span>{t('upcomingListings')}</span>
+              </div>
+              <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem', color: '#111827' }}>
+                IPOs &amp; Listed Debentures
+              </h4>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1rem' }}>
+                Inspect prospectus documents, syndication timelines, and primary share allocations managed by NDB Investment Bank (NDBIB).
+              </p>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <Link href="/markets#listings" className="btn-ndb-primary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
+                  <span>View IPOs &amp; Debentures</span>
+                  <ArrowRight size={13} />
+                </Link>
+                <Link href="/downloads" className="btn-ndb-outline" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
+                  Prospectus Vault
+                </Link>
+              </div>
+            </div>
+
+            <div className="homecard" style={{ borderLeft: '4px solid #0284c7' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#0284c7', fontWeight: 700, fontSize: '0.8rem', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                <BookOpen size={15} />
+                <span>{t('mediaRoom')}</span>
+              </div>
+              <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem', color: '#111827' }}>
+                Market Commentary &amp; Education
+              </h4>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1rem' }}>
+                Watch weekly CSE equity reviews, macro insights, and investor education tutorials produced by our research team.
+              </p>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <a
+                  href="https://www.youtube.com/playlist?list=PLmWWAO1mX26aTAReVwLb95O8Wg6q6dyGF"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ndb-outline"
+                  style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
+                >
+                  <span>{t('marketVideos')}</span>
+                  <ExternalLink size={13} />
+                </a>
+                <a
+                  href="https://www.youtube.com/playlist?list=PLmWWAO1mX26agKydE06s_usjEXH3EJflr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ndb-outline"
+                  style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
+                >
+                  <span>{t('educationalVideos')}</span>
+                  <ExternalLink size={13} />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -690,14 +752,14 @@ export default function Home() {
                 }}
               >
                 <Building size={15} />
-                <span>NDB Capital Holdings Group</span>
+                <span>{t('ecosystemGroup')}</span>
               </div>
               <h2 style={{ fontSize: '1.85rem', fontWeight: 800, marginBottom: '1rem', color: '#111827' }}>
-                Our Diversified <br />
-                <span className="ndbcolor">Financial Ecosystem</span>
+                {t('ecosystemTitle')} <br />
+                <span className="ndbcolor">{t('ecosystemSubtitle')}</span>
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.925rem', lineHeight: 1.65, marginBottom: '1.75rem' }}>
-                NDB Securities operates as an integral arm of NDB Capital Holdings, collaborating across commercial banking, investment banking, and private wealth management to provide institutional and retail clients with full-spectrum capital solutions.
+                {t('ecosystemDesc')}
               </p>
               <a
                 href="https://www.ndbbank.com/ndb-group"
@@ -706,7 +768,7 @@ export default function Home() {
                 className="btn-ndb-outline"
                 style={{ padding: '0.75rem 1.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
               >
-                <span>About NDB Group</span>
+                <span>{t('aboutNdbGroup')}</span>
                 <ExternalLink size={14} />
               </a>
             </div>
@@ -840,13 +902,13 @@ export default function Home() {
             <div>
               <div className="apple-badge blue" style={{ marginBottom: '0.5rem' }}>
                 <BookOpen size={13} />
-                <span>NDBS Research Lab</span>
+                <span>{t('researchBadge')}</span>
               </div>
               <h2 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#111827' }}>
-                Featured Macro &amp; Sector Intelligence
+                {t('researchHeading')}
               </h2>
               <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
-                Actionable equity valuation models and macroeconomic strategy notes produced by our award-winning research desk.
+                {t('researchDesc')}
               </p>
             </div>
 
@@ -861,7 +923,7 @@ export default function Home() {
                 color: 'var(--ndb-red)'
               }}
             >
-              <span>View All Reports &amp; Valuations</span>
+              <span>{t('viewResearch')}</span>
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -881,7 +943,7 @@ export default function Home() {
                 </p>
               </div>
               <Link href="/research" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ndb-red)', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-                <span>Read Executive Summary</span>
+                <span>{t('readSummary')}</span>
                 <ArrowRight size={14} />
               </Link>
             </div>
@@ -900,7 +962,7 @@ export default function Home() {
                 </p>
               </div>
               <Link href="/research" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ndb-red)', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-                <span>Read Executive Summary</span>
+                <span>{t('readSummary')}</span>
                 <ArrowRight size={14} />
               </Link>
             </div>
@@ -918,7 +980,7 @@ export default function Home() {
           title="Trade Online (Atrad)"
         >
           <Monitor size={16} />
-          <span>Atrad Online DMA</span>
+          <span>{t('tradeOnline')}</span>
         </a>
         <button
           onClick={() => setOnboardingOpen(true)}
@@ -926,19 +988,19 @@ export default function Home() {
           title="Open CDS Account"
         >
           <UserCheck size={16} />
-          <span>Open Digital CDS</span>
+          <span>{t('openDigitalCds')}</span>
         </button>
         <Link href="/services#tariffs" className="share-menu-item" title="Tariffs & Levies">
           <DollarSign size={16} />
-          <span>Tariff Schedule</span>
+          <span>{t('tariffSchedule')}</span>
         </Link>
         <Link href="/contact#branches" className="share-menu-item" title="Branch Network">
           <MapPin size={16} />
-          <span>Branch Locator</span>
+          <span>{t('branchLocator')}</span>
         </Link>
         <a href="tel:+94112131000" className="share-menu-item" title="Hotline Support">
           <PhoneCall size={16} />
-          <span>+94 11 2 131 000</span>
+          <span>{t('hotline')}</span>
         </a>
         <div className="share-button-main" title="Quick Access Menu">
           <Share2 size={20} />

@@ -9,12 +9,15 @@ import {
   ExternalLink,
   ArrowUpRight
 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="ndb-footer">
       <div className="container">
-        {/* Main 4-Column Directory */}
+        {/* Main 4-Column Directory (Enriched with all sections from ndbs.lk) */}
         <div
           style={{
             display: 'grid',
@@ -23,70 +26,10 @@ export default function Footer() {
             paddingBottom: '3rem'
           }}
         >
-          {/* Column 1: Information (Exact NDB Bank Style) */}
+          {/* Column 1: Information & Useful Links (Exact from ndbs.lk) */}
           <div>
-            <h5>Information</h5>
+            <h5>{t('usefulLinks')}</h5>
             <ul>
-              <li>
-                <a href="https://www.ndbbank.com/ndb-group" target="_blank" rel="noopener noreferrer">
-                  NDB Group Synergies
-                </a>
-              </li>
-              <li>
-                <Link href="/contact#branches">ATM &amp; Branch Locator</Link>
-              </li>
-              <li>
-                <Link href="/downloads">Forms &amp; Downloads</Link>
-              </li>
-              <li>
-                <Link href="/contact#faq">Frequently Asked Questions (FAQ)</Link>
-              </li>
-              <li>
-                <Link href="/services#tariffs">Brokerage Tariffs &amp; SEC Levies</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 2: Quick Links (Exact NDB Bank Style) */}
-          <div>
-            <h5>Quick Links</h5>
-            <ul>
-              <li>
-                <a href="https://www.financialombudsman.lk" target="_blank" rel="noopener noreferrer">
-                  Financial Ombudsman
-                </a>
-              </li>
-              <li>
-                <Link href="/contact">Contact Us</Link>
-              </li>
-              <li>
-                <Link href="/contact#complaints">Complaint Handling Process</Link>
-              </li>
-              <li>
-                <Link href="/markets">CSE Market News &amp; Notices</Link>
-              </li>
-              <li>
-                <a href="https://online.ndbs.lk" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ndb-red)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-                  <span>Atrad Online DMA Login</span>
-                  <ArrowUpRight size={13} />
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Governance & Security */}
-          <div>
-            <h5>Governance &amp; Other</h5>
-            <ul>
-              <li>
-                <Link href="/about#accessibility">Accessibility Statement</Link>
-              </li>
-              <li>
-                <Link href="/about#security">Security Measures &amp; 2FA</Link>
-              </li>
-              <li>
-                <Link href="/about#compliance">SEC Regulatory Disclosures</Link>
-              </li>
               <li>
                 <a href="https://www.cse.lk" target="_blank" rel="noopener noreferrer">
                   Colombo Stock Exchange (CSE)
@@ -94,8 +37,79 @@ export default function Footer() {
               </li>
               <li>
                 <a href="https://www.sec.gov.lk" target="_blank" rel="noopener noreferrer">
-                  Securities &amp; Exchange Commission (SEC)
+                  Securities &amp; Exchange Commission
                 </a>
+              </li>
+              <li>
+                <a href="https://www.cds.lk" target="_blank" rel="noopener noreferrer">
+                  Central Depository Systems (CDS)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.cbsl.gov.lk" target="_blank" rel="noopener noreferrer">
+                  Central Bank of Sri Lanka (CBSL)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ndbbank.com" target="_blank" rel="noopener noreferrer">
+                  NDB Bank PLC
+                </a>
+              </li>
+              <li>
+                <Link href="/downloads">Cautionary Notice by SEC</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 2: Quick Links & Upcoming Listings */}
+          <div>
+            <h5>{t('quickLinks')}</h5>
+            <ul>
+              <li>
+                <Link href="/markets#listings">Upcoming Listings &amp; IPOs</Link>
+              </li>
+              <li>
+                <Link href="/services#debt">Listed Corporate Debentures</Link>
+              </li>
+              <li>
+                <Link href="/contact#branches">ATM &amp; Branch Locator</Link>
+              </li>
+              <li>
+                <Link href="/contact">Contact &amp; Hotline Support</Link>
+              </li>
+              <li>
+                <Link href="/contact#faq">Frequently Asked Questions (FAQ)</Link>
+              </li>
+              <li>
+                <a href="https://online.ndbs.lk" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ndb-red)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                  <span>Atrad Online DMA Portal</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Investment Resources & Governance */}
+          <div>
+            <h5>{t('investmentResources')}</h5>
+            <ul>
+              <li>
+                <Link href="/markets#tracker">Daily Stock Tracker</Link>
+              </li>
+              <li>
+                <Link href="/research">Institutional Research Reports</Link>
+              </li>
+              <li>
+                <Link href="/downloads">Anti-Money Laundering (AML) Policy</Link>
+              </li>
+              <li>
+                <Link href="/services#tariffs">Brokerage Tariffs &amp; SEC Levies</Link>
+              </li>
+              <li>
+                <Link href="/about#leadership">Board of Directors &amp; Leadership</Link>
+              </li>
+              <li>
+                <Link href="/about#careers">Careers at NDB Securities</Link>
               </li>
             </ul>
           </div>
