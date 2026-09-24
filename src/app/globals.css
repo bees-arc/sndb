@@ -856,3 +856,191 @@ button {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* =========================================================================
+   MOBILE CHATBOT-STYLE SPEED DIAL & FLOATING FAB (Requested by user)
+   ========================================================================= */
+
+.desktop-speed-dial {
+  display: flex;
+}
+
+.mobile-speed-dial-container {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .desktop-speed-dial {
+    display: none !important;
+  }
+
+  .mobile-speed-dial-container {
+    display: block !important;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.25rem;
+    z-index: 1045;
+  }
+
+  .mobile-fab-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--ndb-red);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(207, 21, 45, 0.45);
+    border: 2.5px solid #FFFFFF;
+    cursor: pointer;
+    transition: transform var(--transition-fast), background var(--transition-fast);
+  }
+
+  .mobile-fab-btn:active {
+    transform: scale(0.94);
+    background: var(--ndb-red-hover);
+  }
+
+  .mobile-fab-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 1044;
+  }
+
+  .mobile-fab-popup {
+    position: absolute;
+    bottom: 64px;
+    right: 0;
+    width: 295px;
+    max-width: calc(100vw - 2.5rem);
+    background: #FFFFFF;
+    border-radius: var(--radius-md);
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-hairline);
+    z-index: 1046;
+    overflow: hidden;
+    animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .mobile-fab-header {
+    padding: 0.9rem 1.15rem;
+    border-bottom: 1px solid var(--border-hairline);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-secondary);
+  }
+
+  .mobile-fab-links {
+    display: flex;
+    flex-direction: column;
+    padding: 0.35rem 0;
+  }
+
+  .mobile-fab-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1.15rem;
+    transition: background var(--transition-fast);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+  }
+
+  .mobile-fab-item:hover,
+  .mobile-fab-item:active {
+    background: var(--bg-secondary);
+  }
+
+  .mobile-fab-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
+/* =========================================================================
+   COMPREHENSIVE MOBILE RESPONSIVENESS (Zero impact on desktop)
+   ========================================================================= */
+
+@media (max-width: 991px) {
+  .hero-arrow-btn {
+    display: none !important;
+  }
+
+  .sound-play-btn {
+    display: none !important;
+  }
+
+  .sec2,
+  .sec3 {
+    padding: 3.5rem 0;
+  }
+
+  .sec-promo {
+    padding: 3.5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Sound Play Voice Assist Button - Removed on mobile as requested by user */
+  .sound-play-btn {
+    display: none !important;
+  }
+
+  /* Footer adjustments */
+  .ndb-footer {
+    padding-top: 3rem;
+  }
+
+  .ndb-subfooter {
+    margin-top: 2rem;
+    padding: 1.25rem 0;
+  }
+
+  .ndb-subfooter .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  /* Promo Banner stacks */
+  .sec-promo .container > div {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .ndb-navbar {
+    height: 64px;
+  }
+
+  .homequickcont {
+    padding: 1rem 0.5rem;
+  }
+
+  .homebtns {
+    width: 42px;
+    height: 42px;
+  }
+
+  .sec2-intro-card,
+  .sec3info {
+    padding: 1.75rem 1.25rem;
+  }
+}

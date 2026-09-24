@@ -31,7 +31,9 @@ import {
   Award,
   ExternalLink,
   Share2,
-  Building
+  Building,
+  X,
+  LayoutGrid
 } from 'lucide-react';
 import { SAMPLE_CSE_STOCKS } from '@/data/ndbsData';
 import { useLanguage } from '@/context/LanguageContext';
@@ -41,6 +43,7 @@ export default function Home() {
   const [audience, setAudience] = useState<'local' | 'foreign'>('local');
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [mobileFabOpen, setMobileFabOpen] = useState(false);
 
   const topGainers = [...SAMPLE_CSE_STOCKS].sort((a, b) => b.pctChange - a.pctChange).slice(0, 3);
 
@@ -970,8 +973,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 10. Floating Speed Dial Quick Menu (Like NDB Bank Right-hand Drawer) */}
-      <div className="share-buttons">
+      {/* 10. Floating Speed Dial Quick Menu - Desktop (Right Edge) */}
+      <div className="share-buttons desktop-speed-dial">
         <a
           href="https://online.ndbs.lk"
           target="_blank"
@@ -1003,8 +1006,131 @@ export default function Home() {
           <span>{t('hotline')}</span>
         </a>
         <div className="share-button-main" title="Quick Access Menu">
-          <Share2 size={20} />
+          <LayoutGrid size={20} />
         </div>
+      </div>
+
+      {/* 10b. Mobile Chatbot-Style Floating Action Button & Speed Dial (Requested by user) */}
+      <div className="mobile-speed-dial-container">
+        {mobileFabOpen && (
+          <>
+            <div
+              className="mobile-fab-backdrop"
+              onClick={() => setMobileFabOpen(false)}
+            />
+            <div className="mobile-fab-popup">
+              <div className="mobile-fab-header">
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: '0.925rem', color: 'var(--ndb-red)' }}>
+                    NDB SECURITIES
+                  </div>
+                  <div style={{ fontSize: '0.725rem', color: 'var(--text-tertiary)' }}>
+                    Quick Access Portal
+                  </div>
+                </div>
+                <button
+                  onClick={() => setMobileFabOpen(false)}
+                  style={{ color: '#111827', padding: '0.25rem', borderRadius: '50%', background: 'var(--bg-secondary)', display: 'flex' }}
+                  aria-label="Close Quick Menu"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div className="mobile-fab-links">
+                <a
+                  href="https://online.ndbs.lk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mobile-fab-item"
+                  onClick={() => setMobileFabOpen(false)}
+                >
+                  <div className="mobile-fab-icon-box" style={{ background: 'rgba(207, 21, 45, 0.1)', color: 'var(--ndb-red)' }}>
+                    <Monitor size={18} />
+                  </div>
+                  <div style={{ flexGrow: 1 }}>
+                    <div style={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>{t('tradeOnline')}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Atrad Direct DMA Execution</div>
+                  </div>
+                  <ArrowUpRight size={14} style={{ color: 'var(--text-tertiary)' }} />
+                </a>
+
+                <button
+                  onClick={() => {
+                    setMobileFabOpen(false);
+                    setOnboardingOpen(true);
+                  }}
+                  className="mobile-fab-item"
+                  style={{ width: '100%', textAlign: 'left', background: 'transparent' }}
+                >
+                  <div className="mobile-fab-icon-box" style={{ background: 'rgba(16, 185, 129, 0.1)', color: 'var(--gain-green)' }}>
+                    <UserCheck size={18} />
+                  </div>
+                  <div style={{ flexGrow: 1 }}>
+                    <div style={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>{t('openDigitalCds')}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Paperless e-KYC in 5 Mins</div>
+                  </div>
+                  <ChevronRight size={14} style={{ color: 'var(--text-tertiary)' }} />
+                </button>
+
+                <Link
+                  href="/services#tariffs"
+                  className="mobile-fab-item"
+                  onClick={() => setMobileFabOpen(false)}
+                >
+                  <div className="mobile-fab-icon-box" style={{ background: 'rgba(2, 132, 199, 0.1)', color: 'var(--apple-blue)' }}>
+                    <DollarSign size={18} />
+                  </div>
+                  <div style={{ flexGrow: 1 }}>
+                    <div style={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>{t('tariffSchedule')}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Brokerage &amp; Statutory Levies</div>
+                  </div>
+                  <ChevronRight size={14} style={{ color: 'var(--text-tertiary)' }} />
+                </Link>
+
+                <Link
+                  href="/contact#branches"
+                  className="mobile-fab-item"
+                  onClick={() => setMobileFabOpen(false)}
+                >
+                  <div className="mobile-fab-icon-box" style={{ background: 'rgba(130, 0, 159, 0.1)', color: 'var(--ndb-plum)' }}>
+                    <MapPin size={18} />
+                  </div>
+                  <div style={{ flexGrow: 1 }}>
+                    <div style={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>{t('branchLocator')}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Branches &amp; Investment Centers</div>
+                  </div>
+                  <ChevronRight size={14} style={{ color: 'var(--text-tertiary)' }} />
+                </Link>
+
+                <a
+                  href="tel:+94112131000"
+                  className="mobile-fab-item"
+                  onClick={() => setMobileFabOpen(false)}
+                >
+                  <div className="mobile-fab-icon-box" style={{ background: 'rgba(239, 68, 68, 0.1)', color: 'var(--ndb-red)' }}>
+                    <PhoneCall size={18} />
+                  </div>
+                  <div style={{ flexGrow: 1 }}>
+                    <div style={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>{t('hotline')}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>+94 11 2 131 000</div>
+                  </div>
+                  <ChevronRight size={14} style={{ color: 'var(--text-tertiary)' }} />
+                </a>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Circular Chatbot-Style Button (Bottom-Right) with 4-square LayoutGrid icon */}
+        <button
+          onClick={() => setMobileFabOpen(!mobileFabOpen)}
+          className="mobile-fab-btn"
+          title="Quick Services"
+          aria-label="Quick Access Services"
+        >
+          {mobileFabOpen ? <X size={24} /> : <LayoutGrid size={24} />}
+        </button>
       </div>
 
       {/* 11. Voice Assist / Audio Reading Floating Button (Like NDB Bank sound button) */}

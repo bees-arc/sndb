@@ -239,6 +239,7 @@ export default function Hero({ onOpenOnboarding }: HeroProps) {
       <button
         onClick={prevSlide}
         aria-label="Previous Slide"
+        className="hero-arrow-btn"
         style={{
           position: 'absolute',
           left: '1rem',
@@ -265,6 +266,7 @@ export default function Hero({ onOpenOnboarding }: HeroProps) {
       <button
         onClick={nextSlide}
         aria-label="Next Slide"
+        className="hero-arrow-btn"
         style={{
           position: 'absolute',
           right: '1rem',

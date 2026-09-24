@@ -99,7 +99,7 @@ export default function MarketTicker() {
         </div>
 
         {/* Right: Selected Active Equities + Refresh */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flex: 1, justifyContent: 'flex-end', minWidth: '280px' }}>
+        <div className="ticker-equities-wrap" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flex: 1, justifyContent: 'flex-end', minWidth: '280px' }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -147,7 +147,8 @@ export default function MarketTicker() {
               background: 'var(--bg-tertiary)',
               border: '1px solid var(--border-hairline)',
               color: 'var(--text-secondary)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              flexShrink: 0
             }}
             title="Refresh Live Ticker Feed"
             aria-label="Refresh ticker"
@@ -161,6 +162,13 @@ export default function MarketTicker() {
         @media (max-width: 900px) {
           .turnover-pill {
             display: none !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .ticker-equities-wrap {
+            min-width: 0 !important;
+            width: 100% !important;
+            justify-content: space-between !important;
           }
         }
         .spin {
